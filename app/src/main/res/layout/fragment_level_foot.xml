@@ -7,6 +7,8 @@
     android:padding="20dp"
     tools:context=".LevelFootFragment">
 
+    <!--Left Side: Joker-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,6 +35,8 @@
             android:text="X" />
 
     </LinearLayout>
+
+    <!--Right Side: Points Available-->
 
     <LinearLayout
         android:layout_width="match_parent"
