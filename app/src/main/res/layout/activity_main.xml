@@ -12,6 +12,7 @@
         android:layout_height="match_parent"
         >
 
+        <!--Head-->
         <fragment
             android:name="com.rollnut.questionary.LevelHeadFragment"
             android:id="@+id/header"
@@ -19,32 +20,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"/>
 
+        <!--Body-->
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="2000dp"
+            android:layout_height="match_parent"
             android:layout_below="@+id/header"
             android:layout_above="@+id/footer"
-            android:background="@color/colorAccent"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/message"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_width="wrap_content"
+                <fragment
+                    android:name="com.rollnut.questionary.LevelBodyFragment"
+                    android:id="@+id/body"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginTop="1000dp"
-                    android:text="@string/title_home"/>
+                    />
 
             </LinearLayout>
 
         </ScrollView>
 
+        <!--Foot-->
         <fragment
             android:name="com.rollnut.questionary.LevelFootFragment"
             android:id="@+id/footer"
