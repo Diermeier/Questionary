@@ -5,21 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".LevelHeadFragment"
     android:background="@color/colorAccent"
+    android:padding="20dp"
     >
 
     <TextView
         android:id="@+id/txtLevel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Level XX" />
+        android:text="Level XX"
+        style="@android:style/TextAppearance.Large"
+        />
 
     <TextView
         android:id="@+id/txtHeart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Heart XXXX"
-        android:textSize=""
         android:gravity="right"
+        style="@android:style/TextAppearance.Large"
         />
 
 </FrameLayout>
