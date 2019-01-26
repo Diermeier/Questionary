@@ -3,26 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LevelHeadFragment"
     android:background="@color/colorPrimary"
     android:padding="20dp"
-    >
+    tools:context=".LevelHeadFragment">
 
     <TextView
         android:id="@+id/txtLevel"
+        style="@android:style/TextAppearance.Large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Level XX"
-        style="@android:style/TextAppearance.Large"
-        />
+        android:text="Level XX" />
 
     <TextView
         android:id="@+id/txtHeart"
+        style="@android:style/TextAppearance.Large"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Heart XXXX"
-        android:gravity="right"
-        style="@android:style/TextAppearance.Large"
-        />
+        android:gravity="end"
+        android:text="Heart XXXX" />
 
 </FrameLayout>
