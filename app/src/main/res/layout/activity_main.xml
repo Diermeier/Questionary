@@ -6,47 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <fragment
+        android:id="@+id/levelFragment"
+        android:name="com.rollnut.questionary.LevelFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!--Head-->
-        <fragment
-            android:id="@+id/header"
-            android:name="com.rollnut.questionary.LevelHeadFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
-        <!--Body-->
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/footer"
-            android:layout_below="@+id/header">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <fragment
-                    android:id="@+id/body"
-                    android:name="com.rollnut.questionary.LevelBodyFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </ScrollView>
-
-        <!--Foot-->
-        <fragment
-            android:id="@+id/footer"
-            android:name="com.rollnut.questionary.LevelFootFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
-
-    </RelativeLayout>
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>

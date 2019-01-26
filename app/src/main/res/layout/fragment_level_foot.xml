@@ -13,30 +13,48 @@
         android:orientation="horizontal">
 
         <TextView
-            style="@android:style/TextAppearance.Large"
+            style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Joker " />
+            android:text="@string/joker" />
 
         <TextView
-            style="@android:style/TextAppearance.Large"
+            style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="3pt"
             android:text="X" />
 
         <TextView
-            style="@android:style/TextAppearance.Large"
+            style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginStart="3pt"
             android:text="X" />
 
     </LinearLayout>
 
-    <TextView
-        style="@android:style/TextAppearance.Large"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="right"
-        android:text="XXX" />
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtPointsTotal"
+            style="@android:style/TextAppearance.Large.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hearts_available" />
+
+        <TextView
+            android:id="@+id/txtPointsTotalValue"
+            style="@android:style/TextAppearance.Large.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3pt"
+            android:text="XX" />
+
+    </LinearLayout>
 
 </FrameLayout>
