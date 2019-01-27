@@ -17,20 +17,35 @@ public class LevelViewModel extends ViewModel {
         return _level;
     }
 
+
+    // Adapter Properties - ReadOnly
+
     public int get_LevelNumber() {
         return _level.get_levelNumber();
     }
-    public void set_LevelNumber(int number) {
-        _level.set_LevelNumber(number); }
 
 
-    private int _availablePoints;
+    // ViewModel-Only Properties
 
-    public int get_availablePoints() {
-        return _availablePoints;
+    // Points Total
+
+    private int _pointsTotal;
+
+    public int get_pointsTotal() { return _pointsTotal;}
+
+//    public void set_pointsTotal(int _pointsTotal) {
+//        this._pointsTotal = _pointsTotal;
+//    }
+
+    // Points Available
+
+    private int _pointsAvailable = 100;
+
+    public int get_pointsAvailable() {
+        return _pointsAvailable;
     }
 
-    public void set_availablePoints(int _availablePoints) {
-        this._availablePoints = _availablePoints;
+    public void set_pointsAvailable(int _pointsAvailable) {
+        this._pointsAvailable = _pointsAvailable;
     }
 }

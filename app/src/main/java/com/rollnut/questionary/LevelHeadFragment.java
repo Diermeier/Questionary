@@ -1,6 +1,7 @@
 package com.rollnut.questionary;
 
 
+import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,34 +18,35 @@ import com.rollnut.questionary.viewmodels.LevelViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LevelHeadFragment extends Fragment {
-
-    private LevelViewModel _viewModel;
+public class LevelHeadFragment extends ViewModelFragmentBase<LevelViewModel> {
 
     public LevelHeadFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        _viewModel = ViewModelProviders.of(getActivity()).get(LevelViewModel.class);
+        LevelViewModel viewModel = ViewModelProviders.of(getActivity()).get(LevelViewModel.class);
+        super.set_viewModel(viewModel);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_level_head, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
         TextView txtLevel = view.findViewById(R.id.txtLevelNumberValue);
-        txtLevel.setText(String.valueOf(_viewModel.get_LevelNumber()));
+        txtLevel.setText(String.valueOf(viewModel.get_LevelNumber()));
 
         TextView txtPoints = view.findViewById(R.id.txtPointsTotalValue);
-        txtPoints.setText("1234");
+        txtPoints.setText(String.valueOf(viewModel.get_pointsTotal()));
+    }
 
-        super.onViewCreated(view, savedInstanceState);
+    @Override
+    protected void updateViewModelByView(LevelViewModel viewModel, View view) {
+        // Not required because only one way
     }
 }
