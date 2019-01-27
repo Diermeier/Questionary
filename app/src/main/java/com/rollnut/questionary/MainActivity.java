@@ -8,12 +8,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.rollnut.questionary.models.AppSaveState;
+import com.rollnut.questionary.models.PersistentStore;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        PersistentStore store = new PersistentStore(getApplicationContext());
+//
+//        // Load AppSaveState
+//        try {
+//            AppSaveState appState = store.LoadAppSaveState();
+//            int test = appState.PointsTotal;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+
+//        // Save AppSaveState
+//        AppSaveState appState = new AppSaveState();
+//        appState.PointsTotal = 999;
+//        try {
+//
+//            store.SaveAppSaveState(appState);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         // TODO: Move that line to later existing LevelActivity.
         LevelViewModel viewModel = ViewModelProviders.of(this).get(LevelViewModel.class);

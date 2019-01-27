@@ -21,7 +21,7 @@ public class LevelViewModel extends ViewModel {
     // Adapter Properties - ReadOnly
 
     public int get_LevelNumber() {
-        return _level.get_levelNumber();
+        return _level.LevelNumber;
     }
 
 
