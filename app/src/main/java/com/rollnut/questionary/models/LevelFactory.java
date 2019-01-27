@@ -6,7 +6,7 @@ public class LevelFactory {
     {
         TextLevel level = new TextLevel();
         {
-            level.set_LevelNumber(1);
+            level.set_LevelNumber(989);
         }
         return level;
     }
