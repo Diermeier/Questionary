@@ -4,11 +4,11 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.MainActivity">
 
     <fragment
         android:id="@+id/levelFragment"
-        android:name="com.rollnut.questionary.LevelFragment"
+        android:name="com.rollnut.questionary.view.fragments.LevelFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

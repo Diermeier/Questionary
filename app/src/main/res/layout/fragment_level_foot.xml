@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="20dp"
-    tools:context=".LevelFootFragment">
+    tools:context=".view.fragments.LevelFootFragment">
 
     <!--Left Side: Joker-->
 

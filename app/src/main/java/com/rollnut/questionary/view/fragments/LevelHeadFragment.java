@@ -1,4 +1,4 @@
-package com.rollnut.questionary;
+package com.rollnut.questionary.view.fragments;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rollnut.questionary.R;
+import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LevelFragment">
+    tools:context=".view.fragments.LevelFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         <!--Head-->
         <fragment
             android:id="@+id/header"
-            android:name="com.rollnut.questionary.LevelHeadFragment"
+            android:name="com.rollnut.questionary.view.fragments.LevelHeadFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true" />
@@ -30,7 +30,7 @@
 
                 <fragment
                     android:id="@+id/body"
-                    android:name="com.rollnut.questionary.LevelBodyFragment"
+                    android:name="com.rollnut.questionary.view.fragments.LevelBodyFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
@@ -41,7 +41,7 @@
         <!--Foot-->
         <fragment
             android:id="@+id/footer"
-            android:name="com.rollnut.questionary.LevelFootFragment"
+            android:name="com.rollnut.questionary.view.fragments.LevelFootFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true" />

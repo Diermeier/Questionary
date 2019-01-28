@@ -1,9 +1,10 @@
-package com.rollnut.questionary;
+package com.rollnut.questionary.view;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.rollnut.questionary.R;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 
 public class MainActivity extends AppCompatActivity {

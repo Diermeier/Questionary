@@ -1,4 +1,4 @@
-package com.rollnut.questionary;
+package com.rollnut.questionary.view;
 
 import android.arch.lifecycle.ViewModel;
 import android.os.Bundle;

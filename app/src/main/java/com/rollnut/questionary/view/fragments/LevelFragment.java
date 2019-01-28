@@ -1,6 +1,7 @@
-package com.rollnut.questionary;
+package com.rollnut.questionary.view.fragments;
 
 
+import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,38 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rollnut.questionary.R;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
+public class LevelFragment extends Fragment {
 
-
-    public LevelBodyFragment() {
+    public LevelFragment() {
         // Required empty public constructor
-    }
 
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        LevelViewModel viewModel = ViewModelProviders.of(getActivity()).get(LevelViewModel.class);
-        super.setViewModel(viewModel);
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_level_body, container, false);
-    }
-
-    @Override
-    protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
-
-    }
-
-    @Override
-    protected void updateViewModelByView(LevelViewModel viewModel, View view) {
-
+        return inflater.inflate(R.layout.fragment_level, container, false);
     }
 }
