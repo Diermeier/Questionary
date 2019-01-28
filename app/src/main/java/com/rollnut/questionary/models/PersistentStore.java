@@ -28,7 +28,7 @@ public class PersistentStore {
 
         AppSaveState appSaveState = null;
 
-        // Try load save state from persistent layer.
+        // Try load app save state from persistent layer.
         if (FileExistsInContext(FILE_APPSAVESTATE)) {
             FileInputStream fis = _context.openFileInput(FILE_APPSAVESTATE);
             ObjectInputStream is = new ObjectInputStream(fis);

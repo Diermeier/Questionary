@@ -19,24 +19,24 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-//        PersistentStore store = new PersistentStore(getApplicationContext());
-//
-//        // Load AppSaveState
+        //PersistentStore store = new PersistentStore(getApplicationContext());
+
+        // Load AppSaveState
 //        try {
-//            AppSaveState appState = store.LoadAppSaveState();
+//            AppSaveState appState = app.get_persistentStore().LoadAppSaveState();
 //            int test = appState.PointsTotal;
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        } catch (ClassNotFoundException e) {
 //            e.printStackTrace();
 //        }
-
+//
 //        // Save AppSaveState
 //        AppSaveState appState = new AppSaveState();
-//        appState.PointsTotal = 999;
+//        appState.PointsTotal = 1234;
 //        try {
 //
-//            store.SaveAppSaveState(appState);
+//            app.get_persistentStore().SaveAppSaveState(appState);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
