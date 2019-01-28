@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rollnut.questionary.App;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
+import com.rollnut.questionary.viewmodels.LevelViewModelFactory;
 
 
 /**
@@ -27,6 +29,7 @@ public class LevelFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_level, container, false);
     }

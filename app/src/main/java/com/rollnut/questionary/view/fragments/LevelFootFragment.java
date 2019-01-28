@@ -1,6 +1,7 @@
 package com.rollnut.questionary.view.fragments;
 
 
+import android.app.Application;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.rollnut.questionary.App;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
+import com.rollnut.questionary.viewmodels.LevelViewModelFactory;
 
 
 /**

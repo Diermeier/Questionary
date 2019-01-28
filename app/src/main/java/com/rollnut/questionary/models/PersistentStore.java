@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /**
  * Save and load persistent data.
@@ -40,6 +41,7 @@ public class PersistentStore {
         // No state was ever saved.
         if (appSaveState == null) {
             appSaveState = new AppSaveState();
+            appSaveState.SucceededLevelNumbers = new ArrayList<Integer>();
         }
 
         return appSaveState;

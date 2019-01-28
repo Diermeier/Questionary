@@ -2,13 +2,23 @@ package com.rollnut.questionary.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
 
+import com.rollnut.questionary.App;
+import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.LevelBase;
 import com.rollnut.questionary.models.LevelFactory;
 
 public class LevelViewModel extends ViewModel {
 
-    public LevelViewModel() {
-        level = LevelFactory.CreateTextLevel();
+    public LevelViewModel(App app, int levelNumber) {
+
+        try {
+            AppSaveState appSaveState = app.getPersistentStore().LoadAppSaveState();
+            pointsTotal = appSaveState.PointsTotal;
+        }
+        catch (Exception ex){
+//            Log.e();
+        }
+        level = LevelFactory.CreateTextLevel(levelNumber);
     }
 
     private LevelBase level;
