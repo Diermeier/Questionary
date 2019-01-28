@@ -1,11 +1,9 @@
 package com.rollnut.questionary;
 
 
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +27,7 @@ public class LevelHeadFragment extends ViewModelFragmentBase<LevelViewModel> {
                              Bundle savedInstanceState) {
 
         LevelViewModel viewModel = ViewModelProviders.of(getActivity()).get(LevelViewModel.class);
-        super.set_viewModel(viewModel);
+        super.setViewModel(viewModel);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_level_head, container, false);
@@ -39,10 +37,10 @@ public class LevelHeadFragment extends ViewModelFragmentBase<LevelViewModel> {
     protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
         TextView txtLevel = view.findViewById(R.id.txtLevelNumberValue);
-        txtLevel.setText(String.valueOf(viewModel.get_LevelNumber()));
+        txtLevel.setText(String.valueOf(viewModel.getLevelNumber()));
 
         TextView txtPoints = view.findViewById(R.id.txtPointsTotalValue);
-        txtPoints.setText(String.valueOf(viewModel.get_pointsTotal()));
+        txtPoints.setText(String.valueOf(viewModel.getPointsTotal()));
     }
 
     @Override

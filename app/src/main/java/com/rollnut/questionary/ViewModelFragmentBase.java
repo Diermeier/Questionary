@@ -9,14 +9,14 @@ import android.view.View;
 
 public abstract class ViewModelFragmentBase<T extends ViewModel> extends Fragment {
 
-    private T _viewModel;
+    private T viewModel;
 
-    protected T get_viewModel() {
-        return _viewModel;
+    protected T getViewModel() {
+        return this.viewModel;
     }
 
-    protected void set_viewModel(T _viewModel) {
-        this._viewModel = _viewModel;
+    protected void setViewModel(T viewModel) {
+        this.viewModel = viewModel;
     }
 
     @Override
@@ -27,14 +27,14 @@ public abstract class ViewModelFragmentBase<T extends ViewModel> extends Fragmen
     }
 
     final public void updateViewByViewModel() {
-        updateViewByViewModel(getView(), _viewModel);
+        updateViewByViewModel(getView(), this.viewModel);
     }
 
     protected abstract void updateViewByViewModel(View view, T viewModel);
 
 
     final public void updateViewModelByView() {
-        updateViewModelByView(_viewModel, getView());
+        updateViewModelByView(this.viewModel, getView());
     }
 
     protected abstract void updateViewModelByView(T viewModel, View view);

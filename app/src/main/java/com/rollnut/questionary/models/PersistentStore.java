@@ -16,11 +16,11 @@ public class PersistentStore {
 
     private static final String FILE_APPSAVESTATE = "appsavestate.txt";
 
-    private final Context _context;
+    private final Context context;
 
     public PersistentStore(Context context) {
 
-        _context = context;
+        this.context = context;
     }
 
 
@@ -30,7 +30,7 @@ public class PersistentStore {
 
         // Try load app save state from persistent layer.
         if (FileExistsInContext(FILE_APPSAVESTATE)) {
-            FileInputStream fis = _context.openFileInput(FILE_APPSAVESTATE);
+            FileInputStream fis = this.context.openFileInput(FILE_APPSAVESTATE);
             ObjectInputStream is = new ObjectInputStream(fis);
             appSaveState = (AppSaveState) is.readObject();
             is.close();
@@ -48,7 +48,7 @@ public class PersistentStore {
     public void SaveAppSaveState(AppSaveState appSaveState) throws IOException {
         if (appSaveState == null) throw new NullPointerException("appSaveState");
 
-        FileOutputStream fos = _context.openFileOutput(FILE_APPSAVESTATE, Context.MODE_PRIVATE);
+        FileOutputStream fos = this.context.openFileOutput(FILE_APPSAVESTATE, Context.MODE_PRIVATE);
         ObjectOutputStream os = new ObjectOutputStream(fos);
         os.writeObject(appSaveState);
         os.close();
@@ -58,7 +58,7 @@ public class PersistentStore {
     // Helper
 
     private Boolean FileExistsInContext(String fileName) {
-        for (String item : _context.fileList()) {
+        for (String item : context.fileList()) {
             if (fileName.equals(item)) {
                 return true;
             }

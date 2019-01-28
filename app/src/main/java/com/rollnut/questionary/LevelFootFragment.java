@@ -3,6 +3,7 @@ package com.rollnut.questionary;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,11 +24,11 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         LevelViewModel viewModel = ViewModelProviders.of(getActivity()).get(LevelViewModel.class);
-        super.set_viewModel(viewModel);
+        super.setViewModel(viewModel);
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_level_foot, container, false);
@@ -39,7 +40,7 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         // TODO: Joker
 
         TextView txtPointsAvailable = view.findViewById(R.id.txtPointsAvailableValue);
-        txtPointsAvailable.setText(String.valueOf(viewModel.get_pointsAvailable()));
+        txtPointsAvailable.setText(String.valueOf(viewModel.getPointsAvailable()));
     }
 
     @Override

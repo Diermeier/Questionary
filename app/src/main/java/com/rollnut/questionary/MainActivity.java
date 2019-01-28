@@ -2,17 +2,9 @@ package com.rollnut.questionary;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.rollnut.questionary.models.AppSaveState;
-import com.rollnut.questionary.models.PersistentStore;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
-
-import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         LevelViewModel viewModel = ViewModelProviders.of(this).get(LevelViewModel.class);
 
         //viewModel.set_LevelNumber(111);
-        int number = viewModel.get_LevelNumber();
+        int number = viewModel.getLevelNumber();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);

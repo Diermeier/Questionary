@@ -8,20 +8,20 @@ import com.rollnut.questionary.models.LevelFactory;
 public class LevelViewModel extends ViewModel {
 
     public LevelViewModel() {
-        _level = LevelFactory.CreateTextLevel();
+        level = LevelFactory.CreateTextLevel();
     }
 
-    private LevelBase _level;
+    private LevelBase level;
 
     public LevelBase Level() {
-        return _level;
+        return level;
     }
 
 
     // Adapter Properties - ReadOnly
 
-    public int get_LevelNumber() {
-        return _level.LevelNumber;
+    public int getLevelNumber() {
+        return level.LevelNumber;
     }
 
 
@@ -29,9 +29,9 @@ public class LevelViewModel extends ViewModel {
 
     // Points Total
 
-    private int _pointsTotal;
+    private int pointsTotal;
 
-    public int get_pointsTotal() { return _pointsTotal;}
+    public int getPointsTotal() { return pointsTotal;}
 
 //    public void set_pointsTotal(int _pointsTotal) {
 //        this._pointsTotal = _pointsTotal;
@@ -39,13 +39,13 @@ public class LevelViewModel extends ViewModel {
 
     // Points Available
 
-    private int _pointsAvailable = 100;
+    private int pointsAvailable = 100;
 
-    public int get_pointsAvailable() {
-        return _pointsAvailable;
+    public int getPointsAvailable() {
+        return pointsAvailable;
     }
 
-    public void set_pointsAvailable(int _pointsAvailable) {
-        this._pointsAvailable = _pointsAvailable;
+    public void setPointsAvailable(int pointsAvailable) {
+        this.pointsAvailable = pointsAvailable;
     }
 }

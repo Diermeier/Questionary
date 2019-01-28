@@ -8,15 +8,15 @@ import com.rollnut.questionary.models.PersistentStore;
 // see: https://github.com/codepath/android_guides/wiki/Understanding-the-Android-Application-Class
 public class App extends Application {
 
-    private PersistentStore _persistentStore;
+    private PersistentStore persistentStore;
 
-    public PersistentStore get_persistentStore() {
-        if (_persistentStore == null) {
-            _persistentStore = new PersistentStore(getApplicationContext());
+    public PersistentStore getPersistentStore() {
+        if (this.persistentStore == null) {
+            this.persistentStore = new PersistentStore(getApplicationContext());
         }
-        return _persistentStore;
+        return this.persistentStore;
     }
-    
+
     // Called when the application is starting, before any other application objects have been created.
     // Overriding this method is totally optional!
     @Override
