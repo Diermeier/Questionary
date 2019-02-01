@@ -33,6 +33,7 @@ public class LevelViewModel extends ViewModel {
     public int getLevelNumber() {
         return level.LevelNumber;
     }
+    public String getQuestion() { return level.Question; }
 
 
     // ViewModel-Only Properties

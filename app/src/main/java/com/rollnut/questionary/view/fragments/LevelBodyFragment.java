@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
@@ -39,6 +40,8 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
     @Override
     protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
+        TextView txtQuestion = view.findViewById(R.id.txtQuestion);
+        txtQuestion.setText(String.valueOf(viewModel.getQuestion()));
     }
 
     @Override
