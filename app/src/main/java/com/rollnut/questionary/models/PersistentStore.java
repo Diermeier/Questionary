@@ -31,17 +31,18 @@ public class PersistentStore {
 
         // Try load app save state from persistent layer.
         if (FileExistsInContext(FILE_APPSAVESTATE)) {
-            FileInputStream fis = this.context.openFileInput(FILE_APPSAVESTATE);
-            ObjectInputStream is = new ObjectInputStream(fis);
-            appSaveState = (AppSaveState) is.readObject();
-            is.close();
-            fis.close();
+
+            try (FileInputStream fis = this.context.openFileInput(FILE_APPSAVESTATE);
+                 ObjectInputStream is = new ObjectInputStream(fis)) {
+
+                appSaveState = (AppSaveState) is.readObject();
+            }
         }
 
         // No state was ever saved.
         if (appSaveState == null) {
             appSaveState = new AppSaveState();
-            appSaveState.SucceededLevelNumbers = new ArrayList<Integer>();
+            appSaveState.SucceededLevelNumbers = new ArrayList<>();
         }
 
         return appSaveState;
@@ -50,11 +51,11 @@ public class PersistentStore {
     public void SaveAppSaveState(AppSaveState appSaveState) throws IOException {
         if (appSaveState == null) throw new NullPointerException("appSaveState");
 
-        FileOutputStream fos = this.context.openFileOutput(FILE_APPSAVESTATE, Context.MODE_PRIVATE);
-        ObjectOutputStream os = new ObjectOutputStream(fos);
-        os.writeObject(appSaveState);
-        os.close();
-        fos.close();
+        try (FileOutputStream fos = this.context.openFileOutput(FILE_APPSAVESTATE, Context.MODE_PRIVATE);
+             ObjectOutputStream os = new ObjectOutputStream(fos)){
+
+            os.writeObject(appSaveState);
+        }
     }
 
     // Helper
