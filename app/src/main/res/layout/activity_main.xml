@@ -21,6 +21,13 @@
             android:padding="30dp"
             />
 
+        <Button
+            android:id="@+id/btnClear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnClearSaveState_Click"
+            android:text="Clear Save State" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

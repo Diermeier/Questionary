@@ -60,6 +60,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void btnClearSaveState_Click(View view) throws IOException {
+
+        App app = (App) getApplication();
+        PersistentStore store = app.getPersistentStore();
+        store.SaveAppSaveState(new AppSaveState());
+    }
+
     public void btnStartNextLevel_Click(View view) throws Exception {
 
         App app = (App) getApplication();
