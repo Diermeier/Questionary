@@ -4,10 +4,14 @@ package com.rollnut.questionary.view.fragments;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.rollnut.questionary.R;
@@ -38,14 +42,40 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        EditText editAnswer = view.findViewById(R.id.editAnswer);
+        editAnswer.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateViewModelByView();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+        });
+
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
         TextView txtQuestion = view.findViewById(R.id.txtQuestion);
         txtQuestion.setText(String.valueOf(viewModel.getQuestion()));
+
+        EditText editAnswer = view.findViewById(R.id.editAnswer);
+        editAnswer.setText(viewModel.getQuestion());
     }
 
     @Override
     protected void updateViewModelByView(LevelViewModel viewModel, View view) {
 
+        EditText editAnswer = view.findViewById(R.id.editAnswer);
+        viewModel.setAnswer(editAnswer.getText().toString());
     }
 }

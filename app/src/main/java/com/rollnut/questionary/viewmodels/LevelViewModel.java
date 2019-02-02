@@ -59,4 +59,9 @@ public class LevelViewModel extends ViewModel {
     public void setPointsAvailable(int pointsAvailable) {
         this.pointsAvailable = pointsAvailable;
     }
+
+
+    private String answer;
+    public String getAnswer() { return this.answer; }
+    public void setAnswer(String answer) { this.answer = answer; }
 }
