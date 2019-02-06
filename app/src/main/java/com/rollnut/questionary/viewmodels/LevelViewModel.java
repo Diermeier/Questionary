@@ -7,8 +7,18 @@ import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.LevelBase;
 import com.rollnut.questionary.models.LevelFactory;
 
+/**
+ * Holds the level state for the view (properties)
+ * and controls the behaviour of it.
+ */
 public class LevelViewModel extends ViewModel {
 
+    /**
+     * Loading level meta data for given level number
+     * and represents only that one.
+     * @param app Required in order to access the level meta data.
+     * @param levelNumber The level number which this view model should represent.
+     */
     public LevelViewModel(App app, int levelNumber) {
 
         try {
@@ -21,70 +31,53 @@ public class LevelViewModel extends ViewModel {
         level = LevelFactory.CreateTextLevel(levelNumber);
     }
 
+    // Fields
+
+    /**
+     * The underlying level meta data (only read access should be done).
+     */
     private LevelBase level;
 
-    public LevelBase Level() {
-        return level;
-    }
+    // Properties - Adapter for underlying leve.
 
+    public int getLevelNumber() { return level.LevelNumber; }
 
-    // Adapter Properties - ReadOnly
-
-    public int getLevelNumber() {
-        return level.LevelNumber;
-    }
     public String getQuestion() { return level.Question; }
 
-
-    // ViewModel-Only Properties
-
-    private Boolean isLevelFinished = false;
-    public Boolean getIsLevelFinished() {
-        return isLevelFinished;
-    }
-    private void setIsLevelFinished(Boolean levelFinished) {
-        isLevelFinished = levelFinished;
-    }
-
-    // Points Total
+    // Properties - Overview
 
     private int pointsTotal;
+    public int getPointsTotal() { return pointsTotal; }
 
-    public int getPointsTotal() { return pointsTotal;}
+    // Properties - State
 
-//    public void set_pointsTotal(int _pointsTotal) {
-//        this._pointsTotal = _pointsTotal;
-//    }
-
-    // Points Available
+    private Boolean isLevelFinished = false;
+    public Boolean getIsLevelFinished() { return isLevelFinished; }
+    private void setIsLevelFinished(Boolean levelFinished) { isLevelFinished = levelFinished; }
 
     private int pointsAvailable = 100;
+    public int getPointsAvailable() { return pointsAvailable; }
+    public void setPointsAvailable(int pointsAvailable) { this.pointsAvailable = pointsAvailable; }
 
-    public int getPointsAvailable() {
-        return pointsAvailable;
-    }
-
-    public void setPointsAvailable(int pointsAvailable) {
-        this.pointsAvailable = pointsAvailable;
-    }
-
+    // Properties - UserFeedback
 
     private String answer;
-    public String getAnswer() { return this.answer; }
+    private String getAnswer() { return this.answer; }
     public void setAnswer(String answer) { this.answer = answer; }
 
 
     // Methods - Actions
 
-    public boolean CanApplyCurrentAnswer(){
+    public boolean CanSubmitAnswer(){
+
         String answer = getAnswer();
         return answer != null
                 && !answer.trim().isEmpty();
     }
 
-    public void ApplyCurrentAnswer() {
+    public void SubmitAnswer() {
 
-        if (!CanApplyCurrentAnswer()) return;
+        if (!CanSubmitAnswer()) return;
 
         // TODO: Apply more special compare rules
 
