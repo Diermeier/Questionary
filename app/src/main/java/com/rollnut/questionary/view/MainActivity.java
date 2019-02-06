@@ -1,5 +1,6 @@
 package com.rollnut.questionary.view;
 
+import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -7,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.Constants;
@@ -23,41 +26,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //PersistentStore store = new PersistentStore(getApplicationContext());
-
-        // Load AppSaveState
-//        try {
-//            AppSaveState appState = app.get_persistentStore().LoadAppSaveState();
-//            int test = appState.PointsTotal;
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//
-//        // Save AppSaveState
-//        AppSaveState appState = new AppSaveState();
-//        appState.PointsTotal = 1234;
-//        try {
-//
-//            app.get_persistentStore().SaveAppSaveState(appState);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        // TODO: Move that line to later existing LevelActivity.
-        //LevelViewModel viewModel = ViewModelProviders.of(this).get(LevelViewModel.class);
-
-
-//        LevelViewModel viewModel = ViewModelProviders
-//                .of(this, new LevelViewModelFactory((App)getApplication(), 2))
-//                .get(LevelViewModel.class);
-//
-//        //viewModel.set_LevelNumber(111);
-//        int number = viewModel.getLevelNumber();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        updateUiComponents();
+        super.onResume();
     }
 
     public void btnClearSaveState_Click(View view) throws IOException {
@@ -86,5 +62,37 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LevelActivity.class);
         intent.putExtra(Constants.LevelViewModel_LevelNumber, succededLevels + 1);
         startActivity(intent);
+    }
+
+    public void updateUiComponents() {
+
+        App app = (App) getApplication();
+        AppSaveState appState = null;
+        {
+            try {
+                appState = app.getPersistentStore().LoadAppSaveState();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (appState != null) {
+            // txtCurrentPoints
+            {
+                TextView txtCurrentPoints = findViewById(R.id.txtCurrentPoints);
+                txtCurrentPoints.setText(String.valueOf(appState.PointsTotal));
+            }
+
+            // btnStartNextLevel
+            {
+                String btnText = getApplicationContext().getResources().getString(R.string.start_next_level);
+                btnText = String.format(btnText, appState.SucceededLevelNumbers.size() + 1);
+
+                Button btnStartNextLevel = findViewById(R.id.btnStartNextLevel);
+                btnStartNextLevel.setText(btnText);
+            }
+        }
     }
 }

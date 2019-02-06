@@ -38,6 +38,14 @@ public class LevelViewModel extends ViewModel {
 
     // ViewModel-Only Properties
 
+    private Boolean isLevelFinished = false;
+    public Boolean getIsLevelFinished() {
+        return isLevelFinished;
+    }
+    private void setIsLevelFinished(Boolean levelFinished) {
+        isLevelFinished = levelFinished;
+    }
+
     // Points Total
 
     private int pointsTotal;
@@ -64,4 +72,38 @@ public class LevelViewModel extends ViewModel {
     private String answer;
     public String getAnswer() { return this.answer; }
     public void setAnswer(String answer) { this.answer = answer; }
+
+
+    // Methods - Actions
+
+    public boolean CanApplyCurrentAnswer(){
+        String answer = getAnswer();
+        return answer != null
+                && !answer.trim().isEmpty();
+    }
+
+    public void ApplyCurrentAnswer() {
+
+        if (!CanApplyCurrentAnswer()) return;
+
+        // TODO: Apply more special compare rules
+
+        Boolean isAnswerCorrect = false;
+        {
+            String answer = getAnswer();
+            if (answer == "a") {
+                isAnswerCorrect = true;
+            }
+        }
+
+        if (!isAnswerCorrect)
+        {
+            pointsAvailable -= 10;
+        }
+        else
+        {
+            // TODO: Success
+            setIsLevelFinished(true);
+        }
+    }
 }

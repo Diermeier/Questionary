@@ -8,6 +8,7 @@
     tools:context=".view.MainActivity">
 
     <RelativeLayout
+        android:layout_margin="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,7 +27,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="btnClearSaveState_Click"
-            android:text="Clear Save State" />
+            android:text="Clear Save State"
+            android:layout_alignParentBottom="true" />
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Points: " />
+            <TextView
+                android:id="@+id/txtCurrentPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
     </RelativeLayout>
 

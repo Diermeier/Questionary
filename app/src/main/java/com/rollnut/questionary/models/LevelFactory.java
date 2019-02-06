@@ -22,6 +22,9 @@ public class LevelFactory {
             new TextLevel() {{ Question = "What is the color of water?"; Answers = new String[] { "water" }; }},
             new TextLevel() {{ Question = "What is the color of a green box?"; Answers = new String[] { "green" }; }},
             new TextLevel() {{ Question = "What is the color of snow?"; Answers = new String[] { "white" }; }},
+            new TextLevel() {{ Question = "Next letter of A?"; Answers = new String[] { "B" }; }},
+            new TextLevel() {{ Question = "Next number after 1"; Answers = new String[] { "2" }; }},
+            new TextLevel() {{ Question = "Darkest color?"; Answers = new String[] { "black" }; }},
         };
 
         for (int i = 0; i < array.length; i++){

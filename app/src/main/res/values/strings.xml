@@ -4,6 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="start_next_level">Start Level %d</string>
     <string name="level_no">Level</string>
     <string name="hearts_total">❤</string>
     <string name="joker">Joker</string>
