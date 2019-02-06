@@ -6,7 +6,7 @@
 
     <string name="start_next_level">Start Level %d</string>
     <string name="level_no">Level</string>
-    <string name="hearts_total">❤</string>
+    <string name="points_total">❤</string>
     <string name="joker">Joker</string>
-    <string name="hearts_available">❤</string>
+    <string name="points_remaining">❤</string>
 </resources>

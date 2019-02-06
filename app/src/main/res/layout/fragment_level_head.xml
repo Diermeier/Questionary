@@ -44,7 +44,7 @@
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hearts_total" />
+            android:text="@string/points_total" />
 
         <TextView
             android:id="@+id/txtPointsTotalValue"

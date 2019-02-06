@@ -55,9 +55,9 @@ public class LevelViewModel extends ViewModel {
     public Boolean getIsLevelFinished() { return isLevelFinished; }
     private void setIsLevelFinished(Boolean levelFinished) { isLevelFinished = levelFinished; }
 
-    private int pointsAvailable = 100;
-    public int getPointsAvailable() { return pointsAvailable; }
-    public void setPointsAvailable(int pointsAvailable) { this.pointsAvailable = pointsAvailable; }
+    private int pointsRemaining = 100;
+    public int getPointsRemaining() { return pointsRemaining; }
+    public void setPointsRemaining(int pointsRemaining) { this.pointsRemaining = pointsRemaining; }
 
     // Properties - UserFeedback
 
@@ -91,7 +91,7 @@ public class LevelViewModel extends ViewModel {
 
         if (!isAnswerCorrect)
         {
-            pointsAvailable -= 10;
+            pointsRemaining -= 10;
         }
         else
         {

@@ -45,14 +45,14 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtPointsAvailable"
+            android:id="@+id/txtPointsRemaining"
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hearts_available" />
+            android:text="@string/points_remaining" />
 
         <TextView
-            android:id="@+id/txtPointsAvailableValue"
+            android:id="@+id/txtPointsRemainingValue"
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
