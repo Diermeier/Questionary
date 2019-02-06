@@ -87,11 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
             // btnStartNextLevel
             {
-                String btnText = getApplicationContext().getResources().getString(R.string.start_next_level);
-                btnText = String.format(btnText, appState.SucceededLevelNumbers.size() + 1);
+                String text = String.format(getString(R.string.start_next_level), appState.SucceededLevelNumbers.size() + 1);
 
                 Button btnStartNextLevel = findViewById(R.id.btnStartNextLevel);
-                btnStartNextLevel.setText(btnText);
+                btnStartNextLevel.setText(text);
             }
         }
     }

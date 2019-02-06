@@ -38,11 +38,21 @@ public class LevelHeadFragment extends ViewModelFragmentBase<LevelViewModel> {
     @Override
     protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
-        TextView txtLevel = view.findViewById(R.id.txtLevelNumberValue);
-        txtLevel.setText(String.valueOf(viewModel.getLevelNumber()));
+        // txtLevelNumber
+        {
+            String text = String.format(getString(R.string.level_no), viewModel.getLevelNumber());
 
-        TextView txtPoints = view.findViewById(R.id.txtPointsTotalValue);
-        txtPoints.setText(String.valueOf(viewModel.getPointsTotal()));
+            TextView txtLevel = view.findViewById(R.id.txtLevelNumber);
+            txtLevel.setText(String.valueOf(text));
+        }
+
+        // txtPointsTotal
+        {
+            String text = String.format(getString(R.string.points_total), viewModel.getPointsTotal());
+
+            TextView txtPointsTotal = view.findViewById(R.id.txtPointsTotal);
+            txtPointsTotal.setText(String.valueOf(text));
+        }
     }
 
     @Override

@@ -49,15 +49,15 @@
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/points_remaining" />
+            android:text="" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/txtPointsRemainingValue"
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3pt"
-            android:text="" />
+            android:text="" />-->
 
     </LinearLayout>
 

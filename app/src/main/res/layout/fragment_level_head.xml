@@ -19,14 +19,6 @@
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/level_no" />
-
-        <TextView
-            android:id="@+id/txtLevelNumberValue"
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3pt"
             android:text="" />
 
     </LinearLayout>
@@ -44,14 +36,6 @@
             style="@android:style/TextAppearance.Large.Inverse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/points_total" />
-
-        <TextView
-            android:id="@+id/txtPointsTotalValue"
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3pt"
             android:text="" />
 
     </LinearLayout>

@@ -41,8 +41,13 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
 
         // TODO: Joker
 
-        TextView txtPointsRemaining = view.findViewById(R.id.txtPointsRemainingValue);
-        txtPointsRemaining.setText(String.valueOf(viewModel.getPointsRemaining()));
+        // txtPointsRemaining
+        {
+            String text = String.format(getString(R.string.points_remaining), viewModel.getPointsRemaining());
+
+            TextView txtPointsRemaining = view.findViewById(R.id.txtPointsRemaining);
+            txtPointsRemaining.setText(text);
+        }
     }
 
     @Override

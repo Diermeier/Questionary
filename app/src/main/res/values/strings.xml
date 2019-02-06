@@ -5,8 +5,8 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="start_next_level">Start Level %d</string>
-    <string name="level_no">Level</string>
-    <string name="points_total">❤</string>
+    <string name="level_no">Level %d</string>
+    <string name="points_total">❤ %d</string>
     <string name="joker">Joker</string>
-    <string name="points_remaining">❤</string>
+    <string name="points_remaining">❤ %d</string>
 </resources>
