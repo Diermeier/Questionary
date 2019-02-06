@@ -2,19 +2,25 @@ package com.rollnut.questionary.view;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.security.keystore.KeyNotYetValidException;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 
 import com.rollnut.questionary.ActivityNavigateException;
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.Constants;
 import com.rollnut.questionary.R;
+import com.rollnut.questionary.view.fragments.LevelFragment;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.LevelViewModelFactory;
 
 public class LevelActivity extends AppCompatActivity {
+
+    private LevelViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +41,25 @@ public class LevelActivity extends AppCompatActivity {
         // Only once the activity must create the LevelViewModel with params.
         // The fragments can get the viewmodel in the common way.
         LevelViewModel viewModel = ViewModelProviders
-                .of(this, new LevelViewModelFactory((App)getApplication(), levelNumber))
+                .of(this, new LevelViewModelFactory((App) getApplication(), levelNumber))
                 .get(LevelViewModel.class);
+        this.viewModel = viewModel;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
+    }
+
+    public void btnSubmitAnswer_Click(View view) {
+
+        viewModel.submitAnswer();
+
+        LevelFragment fragment = (LevelFragment) getSupportFragmentManager().findFragmentById(R.id.levelFragment);
+        fragment.updateView();
+
+        if (viewModel.getIsLevelFinished()){
+
+            // TODO: Navigate to an congratulation page.
+            finish();
+        }
     }
 }

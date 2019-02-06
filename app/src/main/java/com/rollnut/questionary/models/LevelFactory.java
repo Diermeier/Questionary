@@ -13,7 +13,7 @@ public class LevelFactory {
 
     public static TextLevel CreateTextLevel(int number)
     {
-        LevelBase level = CreateLevels()[number];
+        LevelBase level = CreateLevels()[number - 1];
         return (TextLevel)level;
     }
 

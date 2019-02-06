@@ -68,23 +68,23 @@ public class LevelViewModel extends ViewModel {
 
     // Methods - Actions
 
-    public boolean CanSubmitAnswer(){
+    public boolean canSubmitAnswer(){
 
         String answer = getAnswer();
         return answer != null
                 && !answer.trim().isEmpty();
     }
 
-    public void SubmitAnswer() {
+    public void submitAnswer() {
 
-        if (!CanSubmitAnswer()) return;
+        if (!canSubmitAnswer()) return;
 
         // TODO: Apply more special compare rules
 
         Boolean isAnswerCorrect = false;
         {
             String answer = getAnswer();
-            if (answer == "a") {
+            if (answer.equals("a")) {
                 isAnswerCorrect = true;
             }
         }
