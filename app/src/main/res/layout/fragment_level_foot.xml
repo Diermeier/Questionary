@@ -36,7 +36,7 @@
 
     </LinearLayout>
 
-    <!--Right Side: Points Available-->
+    <!--Right Side: Points Remaining-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,14 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="" />
-
-        <!--<TextView
-            android:id="@+id/txtPointsRemainingValue"
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="3pt"
-            android:text="" />-->
 
     </LinearLayout>
 
