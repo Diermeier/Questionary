@@ -15,7 +15,13 @@
             android:id="@+id/txtQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:text="No Question Available" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"/>
 
         <LinearLayout
             android:id="@+id/workaroundToPreventAnswerEditTextToOpenKeyboardOnStartup"
@@ -35,12 +41,21 @@
             android:hint="Enter Answer"
             android:text="" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@android:color/transparent"/>
+
         <Button
             android:id="@+id/btnSubmitAnswer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit Answer"
-            android:onClick="btnSubmitAnswer_Click"/>
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="OK"
+            android:onClick="btnSubmitAnswer_Click"
+            android:background="@drawable/rounded_button"
+            style="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+            android:layout_gravity="center_horizontal"
+            />
 
     </LinearLayout>
 </FrameLayout>

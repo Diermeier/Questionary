@@ -49,18 +49,10 @@ public class MainActivity extends AppCompatActivity {
         PersistentStore store = app.getPersistentStore();
 
         AppSaveState appState = store.LoadAppSaveState();
-
-        int succededLevels = appState.getMaxSucceededLevelNumber();
-
-        // Experimental saving for temporarly testing.
-        {
-//            appState.SucceededLevelNumbers.add(1);
-//            appState.PointsTotal += 123;
-//            store.SaveAppSaveState(appState);
-        }
+        int nextLevelNumber = appState.getMaxSucceededLevelNumber() + 1;
 
         Intent intent = new Intent(this, LevelActivity.class);
-        intent.putExtra(Constants.LevelViewModel_LevelNumber, succededLevels + 1);
+        intent.putExtra(Constants.LevelViewModel_LevelNumber, nextLevelNumber);
         startActivity(intent);
     }
 

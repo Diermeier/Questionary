@@ -12,6 +12,8 @@ public class AppSaveState implements Serializable {
 
     public ArrayList<LevelSucceedDetails> SucceededLevels = new ArrayList<>();
 
+//    public PausedLevel PausedLevel
+
     // Methods
 
     public int getMaxSucceededLevelNumber() {
