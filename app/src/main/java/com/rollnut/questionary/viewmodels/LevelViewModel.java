@@ -6,6 +6,7 @@ import com.rollnut.questionary.App;
 import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.LevelBase;
 import com.rollnut.questionary.models.LevelFactory;
+import com.rollnut.questionary.models.LevelSucceedDetails;
 
 /**
  * Holds the level state for the view (properties)
@@ -23,7 +24,7 @@ public class LevelViewModel extends ViewModel {
 
         try {
             AppSaveState appSaveState = app.getPersistentStore().LoadAppSaveState();
-            pointsTotal = appSaveState.PointsTotal;
+            pointsTotal = appSaveState.getPointsTotal();
         }
         catch (Exception ex){
 //            Log.e();
@@ -95,5 +96,16 @@ public class LevelViewModel extends ViewModel {
                 setPointsRemaining(0);
             }
         }
+    }
+
+    public LevelSucceedDetails createLevelSucceedDetails() throws IllegalStateException {
+        if (!getIsLevelFinished()) throw new IllegalStateException("Level is ongoing. Succeed details can only be created for a succeeded level.");
+
+        LevelSucceedDetails details = new LevelSucceedDetails();
+        {
+            details.PointsEarned = getPointsRemaining();
+            details.LevelNumber = getLevelNumber();
+        }
+        return details;
     }
 }

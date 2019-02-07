@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
         AppSaveState appState = store.LoadAppSaveState();
 
-        int succededLevels = appState.SucceededLevelNumbers.size();
+        int succededLevels = appState.getMaxSucceededLevelNumber();
 
         // Experimental saving for temporarly testing.
         {
-            appState.SucceededLevelNumbers.add(1);
-            appState.PointsTotal += 123;
-            store.SaveAppSaveState(appState);
+//            appState.SucceededLevelNumbers.add(1);
+//            appState.PointsTotal += 123;
+//            store.SaveAppSaveState(appState);
         }
 
         Intent intent = new Intent(this, LevelActivity.class);
@@ -79,15 +79,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (appState != null) {
+
             // txtCurrentPoints
             {
                 TextView txtCurrentPoints = findViewById(R.id.txtCurrentPoints);
-                txtCurrentPoints.setText(String.valueOf(appState.PointsTotal));
+                txtCurrentPoints.setText(String.valueOf(appState.getPointsTotal()));
             }
 
             // btnStartNextLevel
             {
-                String text = String.format(getString(R.string.start_next_level), appState.SucceededLevelNumbers.size() + 1);
+                String text = String.format(getString(R.string.start_next_level), appState.getMaxSucceededLevelNumber() + 1);
 
                 Button btnStartNextLevel = findViewById(R.id.btnStartNextLevel);
                 btnStartNextLevel.setText(text);

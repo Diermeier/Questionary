@@ -42,7 +42,7 @@ public class PersistentStore {
         // No state was ever saved.
         if (appSaveState == null) {
             appSaveState = new AppSaveState();
-            appSaveState.SucceededLevelNumbers = new ArrayList<>();
+            appSaveState.SucceededLevels = new ArrayList<>();
         }
 
         return appSaveState;

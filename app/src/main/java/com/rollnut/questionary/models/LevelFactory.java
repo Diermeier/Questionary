@@ -19,7 +19,7 @@ public class LevelFactory {
 
     public static LevelBase[] CreateLevels(){
         TextLevel[] array = {
-            new TextLevel() {{ Question = "What is the color of water?"; Answers = new String[] { "water" }; }},
+            new TextLevel() {{ Question = "What is the color of water?"; Answers = new String[] { "blue" }; }},
             new TextLevel() {{ Question = "What is the color of a green box?"; Answers = new String[] { "green" }; }},
             new TextLevel() {{ Question = "What is the color of snow?"; Answers = new String[] { "white" }; }},
             new TextLevel() {{ Question = "Next letter of A?"; Answers = new String[] { "B" }; }},

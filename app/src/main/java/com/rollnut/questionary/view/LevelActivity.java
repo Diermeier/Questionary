@@ -14,9 +14,14 @@ import com.rollnut.questionary.ActivityNavigateException;
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.Constants;
 import com.rollnut.questionary.R;
+import com.rollnut.questionary.models.AppSaveState;
+import com.rollnut.questionary.models.LevelSucceedDetails;
+import com.rollnut.questionary.models.PersistentStore;
 import com.rollnut.questionary.view.fragments.LevelFragment;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.LevelViewModelFactory;
+
+import java.io.IOException;
 
 public class LevelActivity extends AppCompatActivity {
 
@@ -49,7 +54,7 @@ public class LevelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level);
     }
 
-    public void btnSubmitAnswer_Click(View view) {
+    public void btnSubmitAnswer_Click(View view) throws IOException, ClassNotFoundException, IllegalStateException {
 
         viewModel.submitAnswer();
 
@@ -57,6 +62,18 @@ public class LevelActivity extends AppCompatActivity {
         fragment.updateView();
 
         if (viewModel.getIsLevelFinished()){
+
+            LevelSucceedDetails succeedDetails = viewModel.createLevelSucceedDetails();
+
+            // Save to store
+            {
+                App app = (App) getApplication();
+                PersistentStore store = app.getPersistentStore();
+
+                AppSaveState appState = store.LoadAppSaveState();
+                appState.SucceededLevels.add(succeedDetails);
+                store.SaveAppSaveState(appState);
+            }
 
             // TODO: Navigate to an congratulation page.
             finish();
