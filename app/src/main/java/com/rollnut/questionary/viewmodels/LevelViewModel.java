@@ -28,7 +28,9 @@ public class LevelViewModel extends ViewModel {
         catch (Exception ex){
 //            Log.e();
         }
-        level = LevelFactory.CreateTextLevel(levelNumber);
+
+        this.level = LevelFactory.CreateTextLevel(levelNumber);
+        setPointsRemaining(level.MaxPoints);
     }
 
     // Fields
@@ -55,7 +57,7 @@ public class LevelViewModel extends ViewModel {
     public Boolean getIsLevelFinished() { return isLevelFinished; }
     private void setIsLevelFinished(Boolean levelFinished) { isLevelFinished = levelFinished; }
 
-    private int pointsRemaining = 100;
+    private int pointsRemaining;
     public int getPointsRemaining() { return pointsRemaining; }
     public void setPointsRemaining(int pointsRemaining) { this.pointsRemaining = pointsRemaining; }
 
@@ -79,24 +81,19 @@ public class LevelViewModel extends ViewModel {
 
         if (!canSubmitAnswer()) return;
 
-        // TODO: Apply more special compare rules
+        boolean isAnswerCorrect = level.isAnswerCorrect(getAnswer());
 
-        Boolean isAnswerCorrect = false;
+        if (isAnswerCorrect)
         {
-            String answer = getAnswer();
-            if (answer.equals("a")) {
-                isAnswerCorrect = true;
-            }
-        }
-
-        if (!isAnswerCorrect)
-        {
-            pointsRemaining -= 10;
+            setIsLevelFinished(true);
         }
         else
         {
-            // TODO: Success
-            setIsLevelFinished(true);
+            pointsRemaining -= level.NumberOfPunishmentPoints;
+            if (pointsRemaining < 0)
+            {
+                setPointsRemaining(0);
+            }
         }
     }
 }

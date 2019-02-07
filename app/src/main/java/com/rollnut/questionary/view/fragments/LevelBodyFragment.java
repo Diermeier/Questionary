@@ -65,17 +65,23 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
     @Override
     protected void updateViewByViewModel(View view, LevelViewModel viewModel) {
 
-        TextView txtQuestion = view.findViewById(R.id.txtQuestion);
-        txtQuestion.setText(String.valueOf(viewModel.getQuestion()));
+        // txtQuestion
+        {
+            TextView txtQuestion = view.findViewById(R.id.txtQuestion);
+            txtQuestion.setText(String.valueOf(viewModel.getQuestion()));
+        }
 
-        EditText editAnswer = view.findViewById(R.id.editAnswer);
-        editAnswer.setText(viewModel.getQuestion());
+//        EditText editAnswer = view.findViewById(R.id.editAnswer);
+//        editAnswer.setText(viewModel.getAnswer(););
     }
 
     @Override
     protected void updateViewModelByView(LevelViewModel viewModel, View view) {
 
-        EditText editAnswer = view.findViewById(R.id.editAnswer);
-        viewModel.setAnswer(editAnswer.getText().toString());
+        // editAnswer
+        {
+            EditText editAnswer = view.findViewById(R.id.editAnswer);
+            viewModel.setAnswer(editAnswer.getText().toString());
+        }
     }
 }
