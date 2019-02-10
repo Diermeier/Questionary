@@ -1,12 +1,8 @@
 package com.rollnut.questionary.view;
 
-import android.app.Activity;
-import android.app.Application;
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +12,6 @@ import com.rollnut.questionary.Constants;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.PersistentStore;
-import com.rollnut.questionary.viewmodels.LevelViewModel;
-import com.rollnut.questionary.viewmodels.LevelViewModelFactory;
 
 import java.io.IOException;
 
@@ -49,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         PersistentStore store = app.getPersistentStore();
 
         AppSaveState appState = store.LoadAppSaveState();
-        int nextLevelNumber = appState.getMaxSucceededLevelNumber() + 1;
+        int nextLevelNumber = appState.getMaxFinishedLevelNumber() + 1;
 
         Intent intent = new Intent(this, LevelActivity.class);
         intent.putExtra(Constants.LevelViewModel_LevelNumber, nextLevelNumber);
@@ -80,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
             // btnStartNextLevel
             {
-                String text = String.format(getString(R.string.start_next_level), appState.getMaxSucceededLevelNumber() + 1);
+                String text = String.format(getString(R.string.start_next_level), appState.getMaxFinishedLevelNumber() + 1);
 
                 Button btnStartNextLevel = findViewById(R.id.btnStartNextLevel);
                 btnStartNextLevel.setText(text);

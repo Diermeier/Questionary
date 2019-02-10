@@ -9,7 +9,11 @@ public class TextLevel extends LevelBase {
     @Override
     public boolean isAnswerCorrect(String answerFromUser) {
 
+        answerFromUser = answerFromUser.trim().toLowerCase();
+
         for (String answer : this.Answers) {
+
+            answer = answer.trim().toLowerCase();
 
             if (answer.equals(answerFromUser))
             {

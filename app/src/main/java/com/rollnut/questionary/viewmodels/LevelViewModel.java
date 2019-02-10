@@ -6,7 +6,7 @@ import com.rollnut.questionary.App;
 import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.LevelBase;
 import com.rollnut.questionary.models.LevelFactory;
-import com.rollnut.questionary.models.LevelSucceedDetails;
+import com.rollnut.questionary.models.LevelResultInfo;
 
 /**
  * Holds the level state for the view (properties)
@@ -98,10 +98,15 @@ public class LevelViewModel extends ViewModel {
         }
     }
 
-    public LevelSucceedDetails createLevelSucceedDetails() throws IllegalStateException {
-        if (!getIsLevelFinished()) throw new IllegalStateException("Level is ongoing. Succeed details can only be created for a succeeded level.");
+    /**
+     * Creates a result object for the state of this level.
+     * Attend that this is only possible for finished levels.
+     * @throws IllegalStateException Thrown if level is not finished.
+     */
+    public LevelResultInfo createLevelResultInfo() throws IllegalStateException {
+        if (!getIsLevelFinished()) throw new IllegalStateException("Level is ongoing. Result details can only be created for a finished level.");
 
-        LevelSucceedDetails details = new LevelSucceedDetails();
+        LevelResultInfo details = new LevelResultInfo();
         {
             details.PointsEarned = getPointsRemaining();
             details.LevelNumber = getLevelNumber();

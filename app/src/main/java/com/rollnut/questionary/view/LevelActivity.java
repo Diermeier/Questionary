@@ -1,21 +1,16 @@
 package com.rollnut.questionary.view;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.security.keystore.KeyNotYetValidException;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 
-import com.rollnut.questionary.ActivityNavigateException;
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.Constants;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.models.AppSaveState;
-import com.rollnut.questionary.models.LevelSucceedDetails;
+import com.rollnut.questionary.models.LevelResultInfo;
 import com.rollnut.questionary.models.PersistentStore;
 import com.rollnut.questionary.view.fragments.LevelFragment;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
@@ -63,7 +58,7 @@ public class LevelActivity extends AppCompatActivity {
 
         if (viewModel.getIsLevelFinished()){
 
-            LevelSucceedDetails succeedDetails = viewModel.createLevelSucceedDetails();
+            LevelResultInfo levelResult = viewModel.createLevelResultInfo();
 
             // Save to store
             {
@@ -71,7 +66,7 @@ public class LevelActivity extends AppCompatActivity {
                 PersistentStore store = app.getPersistentStore();
 
                 AppSaveState appState = store.LoadAppSaveState();
-                appState.SucceededLevels.add(succeedDetails);
+                appState.FinishedLevelResults.add(levelResult);
                 store.SaveAppSaveState(appState);
             }
 

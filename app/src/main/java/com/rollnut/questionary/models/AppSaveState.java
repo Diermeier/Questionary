@@ -10,17 +10,17 @@ import java.util.ArrayList;
  */
 public class AppSaveState implements Serializable {
 
-    public ArrayList<LevelSucceedDetails> SucceededLevels = new ArrayList<>();
+    public ArrayList<LevelResultInfo> FinishedLevelResults = new ArrayList<>();
 
 //    public PausedLevel PausedLevel
 
     // Methods
 
-    public int getMaxSucceededLevelNumber() {
+    public int getMaxFinishedLevelNumber() {
 
         int maxNumber = 0;
 
-        for (LevelSucceedDetails detail : SucceededLevels) {
+        for (LevelResultInfo detail : FinishedLevelResults) {
             if (detail.LevelNumber > maxNumber){
                 maxNumber = detail.LevelNumber;
             }
@@ -33,7 +33,7 @@ public class AppSaveState implements Serializable {
 
         int pointsTotal = 0;
 
-        for (LevelSucceedDetails detail : SucceededLevels) {
+        for (LevelResultInfo detail : FinishedLevelResults) {
             pointsTotal += detail.PointsEarned;
         }
 
