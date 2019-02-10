@@ -1,6 +1,7 @@
 package com.rollnut.questionary.models;
 
-import com.rollnut.questionary.App;
+import com.rollnut.questionary.models.level.LevelBase;
+import com.rollnut.questionary.models.level.TextLevel;
 
 /**
  * This factory is temporarly.

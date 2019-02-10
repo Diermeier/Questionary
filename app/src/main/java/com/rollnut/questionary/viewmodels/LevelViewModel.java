@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.models.AppSaveState;
-import com.rollnut.questionary.models.LevelBase;
+import com.rollnut.questionary.models.level.LevelBase;
 import com.rollnut.questionary.models.LevelFactory;
 import com.rollnut.questionary.models.LevelResultInfo;
 

@@ -1,4 +1,4 @@
-package com.rollnut.questionary.models;
+package com.rollnut.questionary.models.level;
 
 public class LevelBase {
 

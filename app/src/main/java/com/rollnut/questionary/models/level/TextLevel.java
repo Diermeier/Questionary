@@ -1,6 +1,4 @@
-package com.rollnut.questionary.models;
-
-import java.util.ArrayList;
+package com.rollnut.questionary.models.level;
 
 public class TextLevel extends LevelBase {
 
