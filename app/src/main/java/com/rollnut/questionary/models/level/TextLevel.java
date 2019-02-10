@@ -1,5 +1,7 @@
 package com.rollnut.questionary.models.level;
 
+import com.rollnut.questionary.models.levelEvaluation.TextEvaluation;
+
 public class TextLevel extends LevelBase {
 
     public String[] Answers = new String[0];
@@ -7,18 +9,16 @@ public class TextLevel extends LevelBase {
     @Override
     public boolean isAnswerCorrect(String answerFromUser) {
 
-        answerFromUser = answerFromUser.trim().toLowerCase();
+        boolean isAnswerCorrect = false;
+
+        TextEvaluation evaluation = new TextEvaluation();
 
         for (String answer : this.Answers) {
 
-            answer = answer.trim().toLowerCase();
-
-            if (answer.equals(answerFromUser))
-            {
-                return true;
-            }
+            isAnswerCorrect = evaluation.evaluateString(answer, answerFromUser);
+            if (isAnswerCorrect) break;
         }
 
-        return super.isAnswerCorrect(answerFromUser);
+        return isAnswerCorrect;
     }
 }
