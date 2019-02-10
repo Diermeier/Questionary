@@ -1,4 +1,11 @@
-package com.rollnut.questionary.models;
+package com.rollnut.questionary.models.joker;
 
-public class TextHintJoker {
+/**
+ * A textual hint for the user.
+ */
+public class TextHintJoker extends JokerBase {
+
+    public String Hint = "";
+
 }
+
