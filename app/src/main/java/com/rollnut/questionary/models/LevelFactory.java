@@ -1,6 +1,7 @@
 package com.rollnut.questionary.models;
 
 import com.rollnut.questionary.models.joker.TextHintJoker;
+import com.rollnut.questionary.models.level.GpsLevel;
 import com.rollnut.questionary.models.level.LevelBase;
 import com.rollnut.questionary.models.level.TextLevel;
 
@@ -20,7 +21,7 @@ public class LevelFactory {
     }
 
     public static LevelBase[] CreateLevels(){
-        TextLevel[] array = {
+        LevelBase[] array = {
             new TextLevel() {{
                 Question = "What is the color of water?";
                 Answers = new String[] { "blue" };
@@ -28,6 +29,7 @@ public class LevelFactory {
 //                    Hint = "Look to the sea!";
 //                }});
             }},
+            new GpsLevel() {{ Question = "Hallte dich Zuhause auf"; TargetLatitude = 49.181600; TargetLongitude = 11.519289; }},
             new TextLevel() {{ Question = "What is the color of a green box?"; Answers = new String[] { "green" }; }},
             new TextLevel() {{ Question = "What is the color of snow?"; Answers = new String[] { "white" }; }},
             new TextLevel() {{ Question = "Next letter of A?"; Answers = new String[] { "B" }; }},
