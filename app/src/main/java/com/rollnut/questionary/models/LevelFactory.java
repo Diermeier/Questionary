@@ -10,14 +10,9 @@ import com.rollnut.questionary.models.level.TextLevel;
  */
 public class LevelFactory {
 
-    public static TextLevel CreateTextLevel() {
-        return CreateTextLevel(1);
-    }
-
-    public static TextLevel CreateTextLevel(int number)
+    public static LevelBase CreateLevel(int number)
     {
-        LevelBase level = CreateLevels()[number - 1];
-        return (TextLevel)level;
+        return CreateLevels()[number - 1];
     }
 
     public static LevelBase[] CreateLevels(){

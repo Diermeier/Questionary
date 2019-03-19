@@ -11,19 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.GPSTracker;
+import com.rollnut.questionary.models.level.GpsLevel;
 
 public class GpsLevelViewModel extends LevelViewModel {
 
 
     /**
-     * Loading level meta data for given level number
-     * and represents only that one.
-     *
-     * @param app         Required in order to access the level meta data.
-     * @param levelNumber The level number which this view model should represent.
+     * Level which checks current gps of the device.
+     * For winning the coordinates must match with the target ones.
+     * @param level
      */
-    public GpsLevelViewModel(App app, int levelNumber) {
-        super(app, levelNumber);
+    public GpsLevelViewModel(GpsLevel level) {
+        super(level);
     }
 
     private GPSTracker gpsTracker;
