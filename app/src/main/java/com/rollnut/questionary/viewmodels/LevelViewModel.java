@@ -15,24 +15,14 @@ import com.rollnut.questionary.models.LevelResultInfo;
 public class LevelViewModel extends ViewModel {
 
     /**
-     * Loading level meta data for given level number
-     * and represents only that one.
-     * @param app Required in order to access the level meta data.
-     * @param levelNumber The level number which this view model should represent.
+     * Represents the state for given level model.
+     * @param level The level contains the level meta data.
      */
-    public LevelViewModel(App app, int levelNumber) {
-
-        try {
-            AppSaveState appSaveState = app.getPersistentStore().LoadAppSaveState();
-            pointsTotal = appSaveState.getPointsTotal();
-        }
-        catch (Exception ex){
-//            Log.e();
-        }
-
-        this.level = LevelFactory.CreateTextLevel(levelNumber);
+    public LevelViewModel(LevelBase level) {{
+        if (level == null) throw new NullPointerException("level");
+        this.level = level;
         setPointsRemaining(level.MaxPoints);
-    }
+    }}
 
     // Fields
 
@@ -51,16 +41,17 @@ public class LevelViewModel extends ViewModel {
 
     private int pointsTotal;
     public int getPointsTotal() { return pointsTotal; }
+    public void setPointsTotal(int pointsTotal) { this.pointsTotal = pointsTotal; }
 
     // Properties - State
 
     private Boolean isLevelFinished = false;
     public Boolean getIsLevelFinished() { return isLevelFinished; }
-    private void setIsLevelFinished(Boolean levelFinished) { isLevelFinished = levelFinished; }
+    private void setIsLevelFinished(Boolean isLevelFinished) { this.isLevelFinished = isLevelFinished; }
 
     private int pointsRemaining;
     public int getPointsRemaining() { return pointsRemaining; }
-    public void setPointsRemaining(int pointsRemaining) { this.pointsRemaining = pointsRemaining; }
+    private void setPointsRemaining(int pointsRemaining) { this.pointsRemaining = pointsRemaining; }
 
     // Properties - UserFeedback
 
