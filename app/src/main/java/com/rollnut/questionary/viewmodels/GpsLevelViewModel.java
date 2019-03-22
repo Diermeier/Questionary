@@ -21,12 +21,17 @@ public class GpsLevelViewModel extends LevelViewModel {
      * For winning the coordinates must match with the target ones.
      * @param level
      */
-    public GpsLevelViewModel(GpsLevel level) {
+    public GpsLevelViewModel(GpsLevel level, GPSTracker tracker)
+    {
         super(level);
+
+        if (tracker == null) throw new NullPointerException("tracker");
+
+        this.gpsTracker = tracker;
     }
 
     private GPSTracker gpsTracker;
-    public GPSTracker getGpsTracker() { return gpsTracker; }
+    private GPSTracker getGpsTracker() { return gpsTracker; }
 
     @Override
     public boolean canSubmitAnswer() {
@@ -36,49 +41,21 @@ public class GpsLevelViewModel extends LevelViewModel {
     @Override
     public void submitAnswer() {
 
-//        LocationManager location = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-//        boolean isGpsActive = location.isProviderEnabled(LocationManager.GPS_PROVIDER);
-//
-//        if (ContextCompat.checkSelfPermission( this, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-//
-//            ActivityCompat.requestPermissions( this, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
-//                    1 );
-//        }
-//
-//        if (_ticker == null){
-//            _ticker = new GPSTracker(this);
-//        }
-//
-//        Location loc = _ticker.getLocation();
-//        double lon = _ticker.getLongitude();
-//        double lat = _ticker.getLatitude();
-//
-//        double test = lat + lon;
+        if (this.gpsTracker.canGetLocation()) {
 
+            double lat = this.gpsTracker.getLatitude();
+            double lon = this.gpsTracker.getLongitude();
+
+            String answer = lat + ";" + lon;
+
+            setAnswer(answer);
+            super.submitAnswer();
+        }
+        else{
+            // Show permission missing dialog ...
+            // At this point there is a problem. In order to show the dialog to user the
+            // activity is required but the viewmodel is not allowed to ref the activity.
+            // Because of this that feature is not supported.
+        }
     }
-
-//    private void InitGpsTracker(){
-//
-//        App app = null;
-//
-//        LocationManager location = (LocationManager) app.getSystemService(Context.LOCATION_SERVICE);
-//        boolean isGpsActive = location.isProviderEnabled(LocationManager.GPS_PROVIDER);
-//
-//        if (ContextCompat.checkSelfPermission( app, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-//
-//            app.getApplicationContext().getCurrentActivity();
-//            ActivityCompat.requestPermissions( app, new String[] {  android.Manifest.permission.ACCESS_COARSE_LOCATION  },
-//                    1 );
-//        }
-//
-//        if (gpsTracker == null){
-//            gpsTracker = new GPSTracker(app);
-//        }
-//
-//        Location loc = gpsTracker.getLocation();
-//        double lon = gpsTracker.getLongitude();
-//        double lat = gpsTracker.getLatitude();
-//
-//        double test = lat + lon;
-//    }
 }

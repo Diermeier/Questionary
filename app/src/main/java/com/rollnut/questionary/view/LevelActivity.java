@@ -1,6 +1,11 @@
 package com.rollnut.questionary.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +13,7 @@ import android.view.View;
 
 import com.rollnut.questionary.App;
 import com.rollnut.questionary.Constants;
+import com.rollnut.questionary.GPSTracker;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.models.AppSaveState;
 import com.rollnut.questionary.models.LevelResultInfo;
@@ -41,12 +47,21 @@ public class LevelActivity extends AppCompatActivity {
         // Only once the activity must create the LevelViewModel with params.
         // The fragments can get the viewmodel in the common way.
         LevelViewModel viewModel = ViewModelProviders
-                .of(this, new LevelViewModelFactory((App) getApplication(), levelNumber))
+                .of(this, new LevelViewModelFactory(this, levelNumber))
                 .get(LevelViewModel.class);
-        this.viewModel = viewModel;
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_level);
+        if (viewModel == null) {
+
+            finish();
+            super.onCreate(savedInstanceState);
+        }
+        else
+        {
+            this.viewModel = viewModel;
+
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_level);
+        }
     }
 
     public void btnSubmitAnswer_Click(View view) throws IOException, ClassNotFoundException, IllegalStateException {

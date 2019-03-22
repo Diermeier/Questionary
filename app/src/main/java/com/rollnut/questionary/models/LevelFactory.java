@@ -24,7 +24,6 @@ public class LevelFactory {
 //                    Hint = "Look to the sea!";
 //                }});
             }},
-            new GpsLevel() {{ Question = "Hallte dich Zuhause auf"; TargetLatitude = 49.181600; TargetLongitude = 11.519289; }},
             new TextLevel() {{ Question = "What is the color of a green box?"; Answers = new String[] { "green" }; }},
             new TextLevel() {{ Question = "What is the color of snow?"; Answers = new String[] { "white" }; }},
             new TextLevel() {{ Question = "Next letter of A?"; Answers = new String[] { "B" }; }},
