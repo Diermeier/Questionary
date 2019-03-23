@@ -59,6 +59,12 @@ public class LevelViewModel extends ViewModel {
     private String getAnswer() { return this.answer; }
     public void setAnswer(String answer) { this.answer = answer; }
 
+    // Properties - Misc
+
+    private String issueMessage;
+    public String getIssueMessage() { return this.issueMessage; }
+    public void setIssueMessage(String value) { this.issueMessage = value; }
+
 
     // Methods - Actions
 

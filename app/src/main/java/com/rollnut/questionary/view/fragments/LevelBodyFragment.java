@@ -71,6 +71,12 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
             txtQuestion.setText(String.valueOf(viewModel.getQuestion()));
         }
 
+        // txtIssueMessage
+        {
+            TextView txtIssueMessage = view.findViewById(R.id.txtIssueMessage);
+            txtIssueMessage.setText(viewModel.getIssueMessage());
+        }
+
 //        EditText editAnswer = view.findViewById(R.id.editAnswer);
 //        editAnswer.setText(viewModel.getAnswer(););
     }
