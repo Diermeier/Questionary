@@ -52,13 +52,10 @@ public class GpsLevelViewModel extends LevelViewModel {
             super.submitAnswer();
         }
         else{
-            // Show permission missing dialog ...
-            // At this point there is a problem. In order to show the dialog to user the
-            // activity is required but the viewmodel is not allowed to ref the activity.
-            // Because of this that feature is not supported.
 
+            // Permisson or Feature missing
             setIssueMessage("Using gps is not possible. Maybee permissions are missing or gps module is disable. " +
-                    "To solve this error go to main page and restart this level.");
+                    "To solve this error go to main page, restart this level and grant permission.");
         }
     }
 }
