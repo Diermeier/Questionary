@@ -97,6 +97,11 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
                     jokerButton.setVisibility(View.VISIBLE);
                 }
             }
+            else {
+
+                LinearLayout panelJoker = view.findViewById(R.id.panelJoker);
+                panelJoker.setVisibility(View.GONE);
+            }
         }
     }
 
