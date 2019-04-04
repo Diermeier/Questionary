@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:onClick="btnStartNextLevel_Click"
+            android:background="@drawable/rounded_button"
+            style="@style/Base.TextAppearance.AppCompat.Large.Inverse"
             android:text="Start Next Level"
             android:padding="30dp"
             />
