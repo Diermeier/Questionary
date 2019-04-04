@@ -1,5 +1,8 @@
 package com.rollnut.questionary.models;
 
+import com.rollnut.questionary.models.joker.ImageHintJoker;
+import com.rollnut.questionary.models.joker.PhoneJoker;
+import com.rollnut.questionary.models.joker.SkipLevelJoker;
 import com.rollnut.questionary.models.joker.TextHintJoker;
 import com.rollnut.questionary.models.level.GpsLevel;
 import com.rollnut.questionary.models.level.LevelBase;
@@ -20,9 +23,21 @@ public class LevelFactory {
             new TextLevel() {{
                 Question = "What is the color of water?";
                 Answers = new String[] { "blue" };
-//                Jokers.add(new TextHintJoker() {{
-//                    Hint = "Look to the sea!";
+                Jokers.add(new TextHintJoker() {{
+                    Hint = "Look to the sea!";
+                }});
+                Jokers.add(new TextHintJoker() {{
+                    Hint = "Oh, come on!";
+                }});
+//                Jokers.add(new ImageHintJoker() {{
+//
 //                }});
+                Jokers.add(new SkipLevelJoker() {{
+
+                }});
+                Jokers.add(new PhoneJoker() {{
+
+                }});
             }},
             new TextLevel() {{ Question = "What is the color of a green box?"; Answers = new String[] { "green" }; }},
             new TextLevel() {{ Question = "What is the color of snow?"; Answers = new String[] { "white" }; }},

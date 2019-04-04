@@ -2,11 +2,12 @@ package com.rollnut.questionary.viewmodels;
 
 import android.arch.lifecycle.ViewModel;
 
-import com.rollnut.questionary.App;
-import com.rollnut.questionary.models.AppSaveState;
+import com.rollnut.questionary.models.joker.JokerBase;
 import com.rollnut.questionary.models.level.LevelBase;
-import com.rollnut.questionary.models.LevelFactory;
 import com.rollnut.questionary.models.LevelResultInfo;
+import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
+
+import java.util.ArrayList;
 
 /**
  * Holds the level state for the view (properties)
@@ -20,8 +21,10 @@ public class LevelViewModel extends ViewModel {
      */
     public LevelViewModel(LevelBase level) {{
         if (level == null) throw new NullPointerException("level");
+
         this.level = level;
         setPointsRemaining(level.MaxPoints);
+        setJokerModels(level.Jokers);
     }}
 
     // Fields
@@ -31,7 +34,33 @@ public class LevelViewModel extends ViewModel {
      */
     private LevelBase level;
 
-    // Properties - Adapter for underlying leve.
+    // Properties - SubViewModels
+
+    private ArrayList<JokerViewModel> jokers;
+    public ArrayList<JokerViewModel> getJokers() { return jokers; }
+    private void setJokers(ArrayList<JokerViewModel> jokers) { this.jokers = jokers;}
+
+    /**
+     * Convert given jokers to their view model pendant and set it to 'jokers'-member.
+     * @param jokerModels The joker model to be convert.
+     */
+    private void setJokerModels(ArrayList<JokerBase> jokerModels) {
+        ArrayList<JokerViewModel> jokerVMs = new ArrayList<JokerViewModel>();
+
+        if (jokerModels != null && jokerModels.size() > 0)
+        {
+            JokerViewModelFactory factory = new JokerViewModelFactory();
+
+            for (JokerBase joker : jokerModels) {
+
+                JokerViewModel vm = factory.create(joker);
+                jokerVMs.add(vm);
+            }
+        }
+        setJokers(jokerVMs);
+    }
+
+    // Properties - Adapter for underlying level
 
     public int getLevelNumber() { return level.LevelNumber; }
 

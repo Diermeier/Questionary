@@ -7,50 +7,92 @@
     android:padding="20dp"
     tools:context=".view.fragments.LevelFootFragment">
 
-    <!--Left Side: Joker-->
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <TextView
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/joker" />
+        <!--Left Side: Joker-->
 
-        <!--<TextView
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="3pt"
-            android:text="X" />
-
-        <TextView
-            style="@android:style/TextAppearance.Large.Inverse"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="3pt"
-            android:text="X" />-->
-
-    </LinearLayout>
-
-    <!--Right Side: Points Remaining-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="end"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtPointsRemaining"
-            style="@android:style/TextAppearance.Large.Inverse"
+        <LinearLayout
+            android:id="@+id/panelJoker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@id/panelRemainingPoints">
 
-    </LinearLayout>
+            <TextView
+                style="@android:style/TextAppearance.Large.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/joker" />
 
+            <HorizontalScrollView
+                android:layout_marginLeft="3pt"
+                android:layout_marginRight="3pt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnTextHintJoker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/joker_button"
+                        android:text="TXT" />
+
+                    <Button
+                        android:id="@+id/btnImageHintJoker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/joker_button"
+                        android:layout_marginStart="3pt"
+                        android:text="IMG" />
+
+                    <Button
+                        android:id="@+id/btnPhoneJoker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/joker_button"
+                        android:layout_marginStart="3pt"
+                        android:text="FON" />
+
+                    <Button
+                        android:id="@+id/btnSkipLevelJoker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/joker_button"
+                        android:layout_marginStart="3pt"
+                        android:text="SKP" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+        <!--Right Side: Points Remaining-->
+
+        <LinearLayout
+            android:id="@+id/panelRemainingPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/txtPointsRemaining"
+                style="@android:style/TextAppearance.Large.Inverse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 </FrameLayout>
