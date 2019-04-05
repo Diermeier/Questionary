@@ -22,6 +22,7 @@ import com.rollnut.questionary.viewmodels.joker.PhoneJokerViewModel;
 import com.rollnut.questionary.viewmodels.joker.SkipLevelJokerViewModel;
 import com.rollnut.questionary.viewmodels.joker.TextHintJokerViewModel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -54,6 +55,11 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         super.onViewCreated(view, savedInstanceState);
     }
 
+
+    public void btnJoker_Click(View view) throws IOException, ClassNotFoundException, IllegalStateException {
+        this.getView();
+    }
+
     private void createJokerViews(View view, ArrayList<JokerViewModel> jokerVMs) {
 
         Button btnTextHintJoker = view.findViewById(R.id.btnTextHintJoker);
@@ -61,43 +67,44 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         Button btnPhoneJoker = view.findViewById(R.id.btnPhoneJoker);
         Button btnSkipLevelJoker = view.findViewById(R.id.btnSkipLevelJoker);
 
-        // 1. Hide each joker by default.
+        // 1. Hide each joker by default and register button click.
         {
             btnTextHintJoker.setVisibility(View.GONE);
+            btnTextHintJoker.setOnClickListener(btnJokerClick_OnClickListener );
+
             btnImageHintJoker.setVisibility(View.GONE);
+            btnImageHintJoker.setOnClickListener(btnJokerClick_OnClickListener );
+
             btnPhoneJoker.setVisibility(View.GONE);
+            btnPhoneJoker.setOnClickListener(btnJokerClick_OnClickListener );
+
             btnSkipLevelJoker.setVisibility(View.GONE);
+            btnSkipLevelJoker.setOnClickListener(btnJokerClick_OnClickListener );
         }
 
         // 2. Show only joker which are present in current level.
         {
-            if (jokerVMs != null && jokerVMs.size() > 0)
-            {
+            if (jokerVMs != null && jokerVMs.size() > 0) {
                 for (JokerViewModel jokerVM : jokerVMs) {
 
                     Button jokerButton;
                     {
                         if (jokerVM instanceof TextHintJokerViewModel) {
                             jokerButton = btnTextHintJoker;
-                        }
-                        else if (jokerVM instanceof ImageHintJokerViewModel) {
+                        } else if (jokerVM instanceof ImageHintJokerViewModel) {
                             jokerButton = btnImageHintJoker;
-                        }
-                        else if (jokerVM instanceof PhoneJokerViewModel) {
+                        } else if (jokerVM instanceof PhoneJokerViewModel) {
                             jokerButton = btnPhoneJoker;
-                        }
-                        else if (jokerVM instanceof SkipLevelJokerViewModel) {
+                        } else if (jokerVM instanceof SkipLevelJokerViewModel) {
                             jokerButton = btnSkipLevelJoker;
-                        }
-                        else {
+                        } else {
                             throw new IllegalArgumentException("The given joker type is not handled.");
                         }
                     }
 
                     jokerButton.setVisibility(View.VISIBLE);
                 }
-            }
-            else {
+            } else {
 
                 LinearLayout panelJoker = view.findViewById(R.id.panelJoker);
                 panelJoker.setVisibility(View.GONE);
@@ -119,8 +126,7 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         // joker
         {
             ArrayList<JokerViewModel> jokerVMs = viewModel.getJokers();
-            if (jokerVMs != null && jokerVMs.size() > 0)
-            {
+            if (jokerVMs != null && jokerVMs.size() > 0) {
                 for (int i = 0; i < jokerVMs.size(); i++) {
 
                     JokerViewModel jokerVM = jokerVMs.get(i);
@@ -151,20 +157,36 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         {
             if (viewModel instanceof TextHintJokerViewModel) {
                 jokerButton = getView().findViewById(R.id.btnTextHintJoker);
-            }
-            else if (viewModel instanceof ImageHintJokerViewModel) {
+            } else if (viewModel instanceof ImageHintJokerViewModel) {
                 jokerButton = getView().findViewById(R.id.btnImageHintJoker);
-            }
-            else if (viewModel instanceof PhoneJokerViewModel) {
+            } else if (viewModel instanceof PhoneJokerViewModel) {
                 jokerButton = getView().findViewById(R.id.btnPhoneJoker);
-            }
-            else if (viewModel instanceof SkipLevelJokerViewModel) {
+            } else if (viewModel instanceof SkipLevelJokerViewModel) {
                 jokerButton = getView().findViewById(R.id.btnSkipLevelJoker);
-            }
-            else {
+            } else {
                 throw new IllegalArgumentException("The given joker type is not handled.");
             }
         }
         return jokerButton;
     }
+
+
+    //Global On click listener for all views
+    final View.OnClickListener btnJokerClick_OnClickListener = new View.OnClickListener() {
+        public void onClick(final View v) {
+
+            v.setEnabled(false);
+
+//            switch(v.getId()) {
+//                case R.id.button1:
+//                    //Inform the user the button1 has been clicked
+//                    Toast.makeText(this, "Button1 clicked.", Toast.LENGTH_SHORT).show();
+//                    break;
+//                case R.id.button2:
+//                    //Inform the user the button2 has been clicked
+//                    Toast.makeText(this, "Button2 clicked.", Toast.LENGTH_SHORT).show();
+//                    break;
+//            }
+        }
+    };
 }
