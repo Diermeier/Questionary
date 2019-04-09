@@ -124,6 +124,14 @@ public class LevelViewModel extends ViewModel {
         }
     }
 
+    public void useJoker(JokerViewModel jokerVM) {
+
+        if (jokerVM == null) throw new NullPointerException("jokerVM");
+
+        jokerVM.setIsUsed(true);
+    }
+
+
     /**
      * Creates a result object for the state of this level.
      * Attend that this is only possible for finished levels.

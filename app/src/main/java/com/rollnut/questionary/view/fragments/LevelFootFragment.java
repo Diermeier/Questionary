@@ -19,6 +19,10 @@ import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,7 +80,7 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
 
             for (JokerViewModel vm : getViewModel().getJokers()) {
 
-                Button jokerButton = getJokerButtonByViewModel(view, vm);
+                Button jokerButton = getJokerButtonByViewModel(view, vm.getClass());
 
                 if (!handledButtons.contains(jokerButton)) {
 
@@ -105,13 +109,30 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         {
             ArrayList<JokerViewModel> jokerVMs = viewModel.getJokers();
             if (jokerVMs != null && jokerVMs.size() > 0) {
-                for (int i = 0; i < jokerVMs.size(); i++) {
 
-                    JokerViewModel jokerVM = jokerVMs.get(i);
-                    if (jokerVM.getIsUsed()) {
+                HashMap<Class, Integer> jokerCountSummary = new HashMap<>();
 
-                        Button button = getJokerButtonByViewModel(jokerVM);
-                        button.setEnabled(false);
+                for (JokerViewModel jokerVM : jokerVMs) {
+
+                    Class jokerVMClass = jokerVM.getClass();
+
+                    if (!jokerCountSummary.containsKey(jokerVMClass)) {
+                        jokerCountSummary.put(jokerVMClass, 0);
+                    }
+
+                    if (jokerVM.getIsUsed() == false) {
+                        jokerCountSummary.put(jokerVMClass, jokerCountSummary.get(jokerVMClass) + 1);
+                    }
+                }
+
+                for (Map.Entry<Class, Integer> entry : jokerCountSummary.entrySet()) {
+
+                    Button jokerButton = getJokerButtonByViewModel(getView(), entry.getKey());
+
+                    jokerButton.setText(String.valueOf(entry.getValue()));
+
+                    if (entry.getValue() <= 0) {
+                        jokerButton.setEnabled(false);
                     }
                 }
             }
@@ -126,18 +147,18 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
 
 
     private Button getJokerButtonByViewModel(JokerViewModel viewModel) {
-        return getJokerButtonByViewModel(getView(), viewModel);
+        return getJokerButtonByViewModel(getView(), viewModel.getClass());
     }
 
     /**
      * Get the joker button pendant for the type of given joker view model.
      * Attend: The naming of the view button must have the prefix 'btn' and then named like the model (not viewmodel).
      */
-    private Button getJokerButtonByViewModel(View view, JokerViewModel viewModel) {
+    private Button getJokerButtonByViewModel(View view, Class jokerVMClass) {
 
         Button jokerButton;
         {
-            String jokerButtonIdString = "btn" + viewModel.getClass().getSimpleName().replace("ViewModel", "");
+            String jokerButtonIdString = "btn" + jokerVMClass.getSimpleName().replace("ViewModel", "");
             int jokerButtonId = getResources().getIdentifier(jokerButtonIdString, "id", getContext().getPackageName());
             jokerButton = view.findViewById(jokerButtonId);
 
@@ -150,22 +171,32 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
         return jokerButton;
     }
 
-    //Global On click listener for all views
+    private JokerViewModel getJokerViewModelByJokerButton(Button button) {
+
+        String vmName = (String)button.getTag();
+        LevelViewModel levelVM = getViewModel();
+
+        for (JokerViewModel jokerVM : levelVM.getJokers()) {
+
+            if (jokerVM.getIsUsed() == false
+             && jokerVM.getClass().getSimpleName().equals(vmName)) {
+
+                return jokerVM;
+            }
+        }
+        return null;
+    }
+
+
+    // On click listener for all joker buttons.
     final View.OnClickListener btnJokerClick_OnClickListener = new View.OnClickListener() {
         public void onClick(final View v) {
 
-            v.setEnabled(false);
+            JokerViewModel jokerVM = getJokerViewModelByJokerButton((Button)v);
+            LevelViewModel levelVM = getViewModel();
+            levelVM.useJoker(jokerVM);
 
-//            switch(v.getId()) {
-//                case R.id.button1:
-//                    //Inform the user the button1 has been clicked
-//                    Toast.makeText(this, "Button1 clicked.", Toast.LENGTH_SHORT).show();
-//                    break;
-//                case R.id.button2:
-//                    //Inform the user the button2 has been clicked
-//                    Toast.makeText(this, "Button2 clicked.", Toast.LENGTH_SHORT).show();
-//                    break;
-//            }
+            updateViewByViewModel();
         }
     };
 }
