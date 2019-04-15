@@ -42,38 +42,27 @@
 
                     <Button
                         android:id="@+id/btnTextHintJoker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/joker_button"
                         android:drawableLeft="@drawable/ic_feedback"
-                        android:text="TXT" />
+                        android:text="TXT"
+                        style="@style/JokerButtonStyle" />
 
                     <Button
                         android:id="@+id/btnImageHintJoker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/joker_button"
-                        android:layout_marginStart="3pt"
                         android:drawableLeft="@drawable/perm_group_camera"
-                        android:text="IMG" />
+                        android:text="IMG"
+                        style="@style/JokerButtonStyle" />
 
                     <Button
                         android:id="@+id/btnPhoneJoker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/joker_button"
-                        android:layout_marginStart="3pt"
                         android:drawableLeft="@drawable/ic_perm_group_phone_calls"
-                        android:text="FON" />
+                        android:text="FON"
+                        style="@style/JokerButtonStyle" />
 
                     <Button
                         android:id="@+id/btnSkipLevelJoker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/joker_button"
-                        android:layout_marginStart="3pt"
                         android:drawableLeft="@drawable/ic_chevron_end"
-                        android:text="SKP" />
+                        android:text="SKP"
+                        style="@style/JokerButtonStyle" />
 
                 </LinearLayout>
             </HorizontalScrollView>

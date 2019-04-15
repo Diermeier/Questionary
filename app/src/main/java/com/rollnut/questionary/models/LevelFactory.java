@@ -29,9 +29,9 @@ public class LevelFactory {
                 Jokers.add(new TextHintJoker() {{
                     Hint = "Oh, come on!";
                 }});
-//                Jokers.add(new ImageHintJoker() {{
-//
-//                }});
+                Jokers.add(new ImageHintJoker() {{
+
+                }});
                 Jokers.add(new SkipLevelJoker() {{
 
                 }});
