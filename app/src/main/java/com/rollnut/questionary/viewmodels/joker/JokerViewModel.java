@@ -13,6 +13,11 @@ public abstract class JokerViewModel extends ViewModel {
         this.joker = joker;
     }
 
+    // Properties - Meta
+
+    public int getCosts() { return this.joker.Costs; }
+
+
     // Properties - State
 
     private boolean isUsed;
@@ -21,4 +26,5 @@ public abstract class JokerViewModel extends ViewModel {
      * True if joker has been used and can not be used again.
      */
     public boolean getIsUsed() { return this.isUsed; }
+
 }

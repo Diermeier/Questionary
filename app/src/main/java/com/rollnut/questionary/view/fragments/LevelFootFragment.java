@@ -1,11 +1,14 @@
 package com.rollnut.questionary.view.fragments;
 
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rollnut.questionary.App;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
@@ -192,11 +196,25 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
     final View.OnClickListener btnJokerClick_OnClickListener = new View.OnClickListener() {
         public void onClick(final View v) {
 
-            JokerViewModel jokerVM = getJokerViewModelByJokerButton((Button)v);
-            LevelViewModel levelVM = getViewModel();
-            levelVM.useJoker(jokerVM);
+            final JokerViewModel jokerVM = getJokerViewModelByJokerButton((Button)v);
+            final LevelViewModel levelVM = getViewModel();
 
-            updateViewByViewModel();
+            new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warn_joker_title)
+                .setMessage(Html.fromHtml(String.format(getString(R.string.warn_joker_message), jokerVM.getCosts())))
+                .setCancelable(true)
+                .setPositiveButton(
+                    R.string.warn_joker_positivebutton,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            levelVM.useJoker(jokerVM);
+                            updateViewByViewModel();
+                        }
+                    }
+                )
+                .setNegativeButton(R.string.warn_joker_negativebutton, null)
+                .show();
         }
     };
 }

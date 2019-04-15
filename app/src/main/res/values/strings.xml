@@ -9,4 +9,10 @@
     <string name="points_total">❤ %d</string>
     <string name="joker">Joker</string>
     <string name="points_remaining">❤ %d</string>
+
+    <string name="warn_joker_title">Use Joker?</string>
+    <string name="warn_joker_message">You are going to use a joker.&lt;br>It will cost &lt;b>%d&lt;/b> points.&lt;br>&lt;br>Are you sure?</string>
+    <string name="warn_joker_positivebutton">Accept</string>
+    <string name="warn_joker_negativebutton">Decline</string>
+
 </resources>
