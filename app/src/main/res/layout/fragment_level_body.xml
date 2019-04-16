@@ -68,5 +68,16 @@
             android:layout_gravity="center_horizontal"
             />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="@android:color/transparent"/>
+
+        <LinearLayout
+            android:id="@+id/jokerAnswerPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
     </LinearLayout>
 </FrameLayout>

@@ -6,7 +6,7 @@ import com.rollnut.questionary.models.joker.JokerBase;
 
 public abstract class JokerViewModel extends ViewModel {
 
-    private JokerBase joker;
+    protected JokerBase joker;
 
     public JokerViewModel(JokerBase joker){
         if (joker == null) throw new NullPointerException("joker");
@@ -14,6 +14,8 @@ public abstract class JokerViewModel extends ViewModel {
     }
 
     // Properties - Meta
+
+    public Class getModelClass() { return this.joker.getClass(); }
 
     public int getCosts() { return this.joker.Costs; }
 

@@ -16,17 +16,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rollnut.questionary.App;
 import com.rollnut.questionary.R;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -209,7 +206,8 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
                         public void onClick(DialogInterface dialog, int which) {
 
                             levelVM.useJoker(jokerVM);
-                            updateViewByViewModel();
+                            LevelFragment parentFragment = (LevelFragment) getParentFragment();
+                            parentFragment.updateView();
                         }
                     }
                 )

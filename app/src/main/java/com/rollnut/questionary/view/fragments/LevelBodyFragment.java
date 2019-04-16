@@ -1,6 +1,7 @@
 package com.rollnut.questionary.view.fragments;
 
 
+import android.appwidget.AppWidgetHostView;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,11 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rollnut.questionary.R;
+import com.rollnut.questionary.models.joker.TextHintJoker;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
+import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
+import com.rollnut.questionary.viewmodels.joker.TextHintJokerViewModel;
 
 
 /**
@@ -79,6 +84,13 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
 
 //        EditText editAnswer = view.findViewById(R.id.editAnswer);
 //        editAnswer.setText(viewModel.getAnswer(););
+
+        // jokerAnswerPanel
+        for (JokerViewModel jokerVM : viewModel.getJokers()) {
+
+            if (!jokerVM.getIsUsed()) continue;
+            createOrUpdateJokerAnswer(jokerVM);
+        }
     }
 
     @Override
@@ -89,5 +101,34 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
             EditText editAnswer = view.findViewById(R.id.editAnswer);
             viewModel.setAnswer(editAnswer.getText().toString());
         }
+    }
+
+    // Methods - Helper
+
+    private void createOrUpdateJokerAnswer(JokerViewModel jokerVM) {
+        if (jokerVM == null) throw new NullPointerException("jokerVM");
+
+        LinearLayout jokerAnswerPanel = getView().findViewById(R.id.jokerAnswerPanel);
+
+        View jokerAnswerView = null;
+
+        // Get existing view element.
+        for (int i = 0; i < jokerAnswerPanel.getChildCount(); i++) {
+
+            View child = jokerAnswerPanel.getChildAt(i);
+            if (jokerVM.equals(child.getTag())) {
+                jokerAnswerView = child;
+            }
+        }
+
+        if (jokerAnswerView == null) {
+
+            jokerAnswerView = new TextView(getContext());
+            jokerAnswerView.setTag(jokerVM);
+            jokerAnswerPanel.addView(jokerAnswerView);
+        }
+
+
+        ((TextView)jokerAnswerView).setText(((TextHintJokerViewModel)jokerVM).getHint());
     }
 }
