@@ -4,6 +4,7 @@ package com.rollnut.questionary.view.fragments;
 import android.app.AlertDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import com.rollnut.questionary.R;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
+import com.rollnut.questionary.viewmodels.joker.PhoneJokerViewModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -206,6 +208,13 @@ public class LevelFootFragment extends ViewModelFragmentBase<LevelViewModel> {
                         public void onClick(DialogInterface dialog, int which) {
 
                             levelVM.useJoker(jokerVM);
+
+                            if (jokerVM instanceof PhoneJokerViewModel) {
+
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                startActivity(intent);
+                            }
+
                             LevelFragment parentFragment = (LevelFragment) getParentFragment();
                             parentFragment.updateView();
                         }

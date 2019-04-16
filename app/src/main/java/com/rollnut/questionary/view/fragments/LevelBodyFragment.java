@@ -128,7 +128,8 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
             jokerAnswerPanel.addView(jokerAnswerView);
         }
 
-
-        ((TextView)jokerAnswerView).setText(((TextHintJokerViewModel)jokerVM).getHint());
+        if (jokerVM instanceof TextHintJokerViewModel) {
+            ((TextView)jokerAnswerView).setText(((TextHintJokerViewModel)jokerVM).getHint());
+        }
     }
 }

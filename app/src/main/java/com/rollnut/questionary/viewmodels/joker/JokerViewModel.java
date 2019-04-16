@@ -15,8 +15,6 @@ public abstract class JokerViewModel extends ViewModel {
 
     // Properties - Meta
 
-    public Class getModelClass() { return this.joker.getClass(); }
-
     public int getCosts() { return this.joker.Costs; }
 
 
