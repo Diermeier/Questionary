@@ -129,6 +129,13 @@ public class LevelViewModel extends ViewModel {
         if (jokerVM == null) throw new NullPointerException("jokerVM");
 
         jokerVM.setIsUsed(true);
+
+        int leftPoints = getPointsRemaining() - jokerVM.getCosts();
+        if (leftPoints < 0)
+        {
+            leftPoints = 0;
+        }
+        setPointsRemaining(leftPoints);
     }
 
 

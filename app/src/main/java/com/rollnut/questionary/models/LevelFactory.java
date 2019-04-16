@@ -25,9 +25,11 @@ public class LevelFactory {
                 Answers = new String[] { "blue" };
                 Jokers.add(new TextHintJoker() {{
                     Hint = "Look to the sea!";
+                    Costs = 15;
                 }});
                 Jokers.add(new TextHintJoker() {{
                     Hint = "Oh, come on!";
+                    Costs = 4;
                 }});
                 Jokers.add(new ImageHintJoker() {{
 
