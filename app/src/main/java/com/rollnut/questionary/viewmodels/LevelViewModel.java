@@ -8,6 +8,9 @@ import com.rollnut.questionary.models.LevelResultInfo;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Holds the level state for the view (properties)
@@ -127,15 +130,31 @@ public class LevelViewModel extends ViewModel {
     public void useJoker(JokerViewModel jokerVM) {
 
         if (jokerVM == null) throw new NullPointerException("jokerVM");
+        if (jokerVM.getIsUsed()) throw new IllegalArgumentException("Given jokerVM is already used.");
 
-        jokerVM.setIsUsed(true);
-
-        int leftPoints = getPointsRemaining() - jokerVM.getCosts();
-        if (leftPoints < 0)
+        // Get next order number for given jokerVM (highest + 1 / one-based).
+        int nextJokerOrder = 1;
         {
-            leftPoints = 0;
+            JokerViewModel maxJokerVM = Collections.max(jokers);
+            if (maxJokerVM != null && maxJokerVM.getOrder() > 0) {
+                nextJokerOrder = maxJokerVM.getOrder() + 1;
+            }
         }
-        setPointsRemaining(leftPoints);
+
+        // Set jokerVM state
+        {
+            jokerVM.setIsUsed(true);
+            jokerVM.setOrder(nextJokerOrder);
+        }
+
+        // Validate remaining points.
+        {
+            int leftPoints = getPointsRemaining() - jokerVM.getCosts();
+            if (leftPoints < 0) {
+                leftPoints = 0;
+            }
+            setPointsRemaining(leftPoints);
+        }
     }
 
 

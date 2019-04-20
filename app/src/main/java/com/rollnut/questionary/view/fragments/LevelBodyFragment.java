@@ -23,6 +23,11 @@ import com.rollnut.questionary.viewmodels.LevelViewModel;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
 import com.rollnut.questionary.viewmodels.joker.TextHintJokerViewModel;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,10 +91,20 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
 //        editAnswer.setText(viewModel.getAnswer(););
 
         // jokerAnswerPanel
-        for (JokerViewModel jokerVM : viewModel.getJokers()) {
+        {
+            this.toString();
+            ArrayList<JokerViewModel> orderedJokers = new ArrayList<>();
+            for (JokerViewModel jokerVM : viewModel.getJokers()) {
+                if (jokerVM.getIsUsed()) {
+                    orderedJokers.add(jokerVM);
+                }
+            }
+            Collections.sort(orderedJokers, Collections.reverseOrder());
 
-            if (!jokerVM.getIsUsed()) continue;
-            createOrUpdateJokerAnswer(jokerVM);
+            for (JokerViewModel jokerVM : orderedJokers) {
+
+                createOrUpdateJokerAnswer(jokerVM);
+            }
         }
     }
 
@@ -121,13 +136,15 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
             }
         }
 
+        // Create new joker view element.
         if (jokerAnswerView == null) {
 
             jokerAnswerView = new TextView(getContext());
             jokerAnswerView.setTag(jokerVM);
-            jokerAnswerPanel.addView(jokerAnswerView);
+            jokerAnswerPanel.addView(jokerAnswerView, 0);
         }
 
+        // Update joker element.
         if (jokerVM instanceof TextHintJokerViewModel) {
             ((TextView)jokerAnswerView).setText(((TextHintJokerViewModel)jokerVM).getHint());
         }

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 
 import com.rollnut.questionary.models.joker.JokerBase;
 
-public abstract class JokerViewModel extends ViewModel {
+public abstract class JokerViewModel extends ViewModel implements Comparable<JokerViewModel> {
 
     protected JokerBase joker;
 
@@ -27,4 +27,14 @@ public abstract class JokerViewModel extends ViewModel {
      */
     public boolean getIsUsed() { return this.isUsed; }
 
+    private int order;
+    public int getOrder() { return order; }
+    public void setOrder(int order) { this.order = order;}
+
+    // Interface Implementation - Comparable<JokerViewModel>
+
+    @Override
+    public int compareTo(JokerViewModel jokerVM) {
+        return Integer.compare(getOrder(), jokerVM.getOrder());
+    }
 }
