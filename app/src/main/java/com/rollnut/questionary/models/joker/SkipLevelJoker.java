@@ -6,5 +6,7 @@ package com.rollnut.questionary.models.joker;
  */
 public class SkipLevelJoker extends JokerBase {
 
-
+    public SkipLevelJoker() {
+        Costs = 999999;
+    }
 }

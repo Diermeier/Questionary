@@ -3,9 +3,11 @@ package com.rollnut.questionary.viewmodels;
 import android.arch.lifecycle.ViewModel;
 
 import com.rollnut.questionary.models.joker.JokerBase;
+import com.rollnut.questionary.models.joker.SkipLevelJoker;
 import com.rollnut.questionary.models.level.LevelBase;
 import com.rollnut.questionary.models.LevelResultInfo;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
+import com.rollnut.questionary.viewmodels.joker.SkipLevelJokerViewModel;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -97,10 +99,15 @@ public class LevelViewModel extends ViewModel {
     public String getIssueMessage() { return this.issueMessage; }
     public void setIssueMessage(String value) { this.issueMessage = value; }
 
+    private boolean canSkipLevel;
+    public boolean getCanSkipLevel() { return this.canSkipLevel; }
+    public void setCanSkipLevel(boolean value) { this.canSkipLevel = value; }
 
     // Methods - Actions
 
     public boolean canSubmitAnswer(){
+
+        if (getCanSkipLevel()) return true;
 
         String answer = getAnswer();
         return answer != null
@@ -111,7 +118,13 @@ public class LevelViewModel extends ViewModel {
 
         if (!canSubmitAnswer()) return;
 
-        boolean isAnswerCorrect = level.isAnswerCorrect(getAnswer());
+        boolean isAnswerCorrect;
+        if (getCanSkipLevel()) {
+            isAnswerCorrect = true;
+        }
+        else {
+            isAnswerCorrect = level.isAnswerCorrect(getAnswer());
+        }
 
         if (isAnswerCorrect)
         {
@@ -154,6 +167,11 @@ public class LevelViewModel extends ViewModel {
                 leftPoints = 0;
             }
             setPointsRemaining(leftPoints);
+        }
+
+        if (jokerVM instanceof SkipLevelJokerViewModel) {
+
+            setCanSkipLevel(true);
         }
     }
 
