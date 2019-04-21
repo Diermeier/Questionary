@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="start_next_level">Level %d Starten</string>
+    <string name="level_no">Level %d</string>
+    <string name="points_total">❤ %d</string>
+    <string name="joker">Joker</string>
+    <string name="points_remaining">❤ %d</string>
+
+    <string name="warn_joker_title">Joker einsetzen?</string>
+    <string name="warn_joker_message">Möchtest du den Joker wirklich einsetzen?&lt;br>Die Kosten betragen &lt;b>%d&lt;/b> Punkte.&lt;br>&lt;br>Bist du sicher?</string>
+    <string name="warn_joker_positivebutton">Einsetzen</string>
+    <string name="warn_joker_negativebutton">Abbrechen</string>
+
+</resources>
