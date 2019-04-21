@@ -3,6 +3,9 @@ package com.rollnut.questionary.view.fragments;
 
 import android.appwidget.AppWidgetHostView;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rollnut.questionary.R;
@@ -92,16 +97,15 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
 
         // jokerAnswerPanel
         {
-            this.toString();
-            ArrayList<JokerViewModel> orderedJokers = new ArrayList<>();
+            ArrayList<JokerViewModel> jokerVMList = new ArrayList<>();
             for (JokerViewModel jokerVM : viewModel.getJokers()) {
                 if (jokerVM.getIsUsed()) {
-                    orderedJokers.add(jokerVM);
+                    jokerVMList.add(jokerVM);
                 }
             }
-            Collections.sort(orderedJokers, Collections.reverseOrder());
+            //Collections.sort(jokerVMList, Collections.reverseOrder());
 
-            for (JokerViewModel jokerVM : orderedJokers) {
+            for (JokerViewModel jokerVM : jokerVMList) {
 
                 createOrUpdateJokerAnswer(jokerVM);
             }
@@ -139,14 +143,84 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
         // Create new joker view element.
         if (jokerAnswerView == null) {
 
-            jokerAnswerView = new TextView(getContext());
-            jokerAnswerView.setTag(jokerVM);
-            jokerAnswerPanel.addView(jokerAnswerView, 0);
+            jokerAnswerView = createJokerAnswer(jokerVM);
+
+            if (jokerVM.getOrder() == 1) {
+                jokerAnswerPanel.addView(jokerAnswerView);
+            }
+            else {
+
+                // Here comes crazy code in order to ensure the correct order of the jokers.
+                int preNumber = jokerVM.getOrder() - 1;
+                int preIndex = 0;
+                for (int i = 0; i < jokerAnswerPanel.getChildCount(); i++) {
+
+                    if (jokerAnswerPanel.getTag() instanceof JokerViewModel) {
+
+                        JokerViewModel preVM = (JokerViewModel)jokerAnswerPanel.getTag();
+                        if (preVM.getOrder() == preNumber) {
+
+                            preIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                jokerAnswerPanel.addView(jokerAnswerView, preIndex);
+            }
+        }
+    }
+
+    private LinearLayout createJokerAnswer(JokerViewModel jokerVM) {
+        if (jokerVM == null) throw new NullPointerException("jokerVM");
+
+        LinearLayout newPanel = new LinearLayout(getContext());
+        newPanel.setTag(jokerVM);
+        newPanel.setOrientation(LinearLayout.VERTICAL);
+
+        // Title
+        {
+            TextView titleView = new TextView(getContext());
+            titleView.setTextAppearance(getContext(), R.style.TextAppearance_AppCompat_Medium);
+            titleView.setTypeface(null, Typeface.BOLD);
+            titleView.setText("Joker " + jokerVM.getOrder());
+
+            newPanel.addView(titleView);
         }
 
-        // Update joker element.
-        if (jokerVM instanceof TextHintJokerViewModel) {
-            ((TextView)jokerAnswerView).setText(((TextHintJokerViewModel)jokerVM).getHint());
+        // Body
+        {
+            // TextHintJokerViewModel
+            if (jokerVM instanceof TextHintJokerViewModel) {
+
+                TextHintJokerViewModel textHintVM = (TextHintJokerViewModel) jokerVM;
+
+                TextView textView = new TextView(getContext());
+                textView.setTextAppearance(getContext(), R.style.TextAppearance_AppCompat_Medium);
+                textView.setText(textHintVM.getHint());
+
+                newPanel.addView(textView);
+            }
         }
+
+        // Foot (but skip the first joker)
+        if (jokerVM.getOrder() > 1)
+        {
+            LinearLayout separator = new LinearLayout(getContext());
+            separator.setPadding(0, 50,0, 50);
+            separator.setOrientation(LinearLayout.VERTICAL);
+
+            {
+                LinearLayout view = new LinearLayout(getContext());
+                view.setOrientation(LinearLayout.VERTICAL);
+                view.setMinimumHeight(1);
+                view.setBackgroundColor(Color.argb(128,0,0, 0));
+                separator.addView(view);
+            }
+
+            newPanel.addView(separator);
+        }
+
+        return newPanel;
     }
 }
