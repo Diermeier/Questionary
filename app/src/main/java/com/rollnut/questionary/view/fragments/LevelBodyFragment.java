@@ -3,6 +3,7 @@ package com.rollnut.questionary.view.fragments;
 
 import android.appwidget.AppWidgetHostView;
 import android.arch.lifecycle.ViewModelProviders;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -12,19 +13,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rollnut.questionary.R;
+import com.rollnut.questionary.models.joker.ImageHintJoker;
 import com.rollnut.questionary.models.joker.TextHintJoker;
 import com.rollnut.questionary.view.ViewModelFragmentBase;
 import com.rollnut.questionary.viewmodels.LevelViewModel;
+import com.rollnut.questionary.viewmodels.joker.ImageHintJokerViewModel;
 import com.rollnut.questionary.viewmodels.joker.JokerViewModel;
 import com.rollnut.questionary.viewmodels.joker.TextHintJokerViewModel;
 
@@ -97,15 +102,15 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
 
         // jokerAnswerPanel
         {
-            ArrayList<JokerViewModel> jokerVMList = new ArrayList<>();
+            ArrayList<JokerViewModel> usedJokers = new ArrayList<>();
             for (JokerViewModel jokerVM : viewModel.getJokers()) {
+
                 if (jokerVM.getIsUsed()) {
-                    jokerVMList.add(jokerVM);
+                    usedJokers.add(jokerVM);
                 }
             }
-            //Collections.sort(jokerVMList, Collections.reverseOrder());
 
-            for (JokerViewModel jokerVM : jokerVMList) {
+            for (JokerViewModel jokerVM : usedJokers) {
 
                 createOrUpdateJokerAnswer(jokerVM);
             }
@@ -200,6 +205,19 @@ public class LevelBodyFragment extends ViewModelFragmentBase<LevelViewModel> {
                 textView.setText(textHintVM.getHint());
 
                 newPanel.addView(textView);
+            }
+            // ImageHintJokerViewModel
+            else if (jokerVM instanceof ImageHintJokerViewModel) {
+
+                ImageHintJokerViewModel imageHintVM = (ImageHintJokerViewModel ) jokerVM;
+                Bitmap bitmap = imageHintVM.getImageAsBitmap();
+
+                ImageView imageView = new ImageView(getContext());
+                imageView.setAdjustViewBounds(true);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView.setImageBitmap(bitmap);
+
+                newPanel.addView(imageView);
             }
         }
 
